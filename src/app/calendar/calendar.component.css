@@ -1,0 +1,37 @@
+
+.total{
+  border: 1px solid red;
+  min-height: 93vh;
+  width: 100%;
+  border: 1px solid red;
+  padding: 5px;
+  margin: 0px;
+}
+.col-2{
+  height: 80vh;
+  border: 1px solid red;
+}
+/* .col-2{
+  min-height: 100vh;
+  max-height: 100vh;
+} */
+.sideL {
+  background-color: #4f4f4f;
+  color: white;
+
+}
+.sideR{
+margin: 0 0 0 0;
+border: 2px solid blue;
+
+}
+.row {
+  margin: 0 0 0 0;
+}
+.calendar{
+  border: 2px solid blue;
+  min-height: 75vh;
+  margin:  auto;
+
+  width: 100%;
+}
