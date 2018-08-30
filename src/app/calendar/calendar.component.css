@@ -1,15 +1,12 @@
 
 .total{
-  border: 1px solid red;
   min-height: 93vh;
   width: 100%;
-  border: 1px solid red;
   padding: 5px;
   margin: 0px;
 }
 .col-2{
-  height: 80vh;
-  border: 1px solid red;
+  min-height: 80vh;
 }
 /* .col-2{
   min-height: 100vh;
@@ -21,8 +18,7 @@
 
 }
 .sideR{
-margin: 0 0 0 0;
-border: 2px solid blue;
+margin: 0px ;
 
 }
 .row {
@@ -34,4 +30,39 @@ border: 2px solid blue;
   margin:  auto;
 
   width: 100%;
+}
+
+.btnz {
+  width: 100%;
+  margin: 1px;
+  padding: 5px;
+  color: white;
+  text-align: left;
+}
+.btn2{
+  background-color: #4f4f4f;
+  color: white;
+  width: 100%;
+  padding: 0px;
+  box-shadow: none !important;
+
+
+}
+.btn2:hover {
+  background-color: #4f4f4f;
+}
+mat-expansion-panel-header{
+  padding: 5px;
+}
+mat-expansion-panel-header{
+  padding: 5px;
+}
+
+h3 {
+  margin: 0 0 10px;
+}
+
+pre {
+  background-color: #f5f5f5;
+  padding: 15px;
 }
