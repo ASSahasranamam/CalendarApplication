@@ -15,17 +15,21 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 
 import {MatButtonToggleModule,
    MatButtonModule,MatDividerModule,
-    MatExpansionModule,MatTabsModule} from '@angular/material'
+    MatExpansionModule,MatTabsModule,
+  MatDialogModule} from '@angular/material'
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { DialogboxComponent } from './dialogbox/dialogbox.component';
 
+import {DialogformService} from './dialogform.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CalendarComponent
+    CalendarComponent,
+    DialogboxComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +48,14 @@ CalendarModule.forRoot(),
     MatDividerModule,
     MatExpansionModule,
     MatTabsModule,
+    MatDialogModule,
 
   ],
-  providers: [],
+  entryComponents: [
+    DialogboxComponent
+],
+
+  providers: [DialogformService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

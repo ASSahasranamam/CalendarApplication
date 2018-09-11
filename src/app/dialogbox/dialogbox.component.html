@@ -1,0 +1,84 @@
+<h3 mat-dialog-title>{{this.datex | date:'fullDate' }} </h3>
+<mat-dialog-content class="mat-typography">
+  <button class="  float-right btn btn-primary"  (click) ='sendMessage()' > Add Task</button>
+
+  <br>
+<form>
+<div class="form-group">
+  <label for="#eventTitle"></label>
+  <input name="eventTitle" id='eventTitle' type="text" [(ngModel)]='eventTitle'>
+</div>
+</form>
+
+<div *ngIf="this.showEvents == false">
+    <h3 style="color:red"> NoEvents! </h3>
+</div>
+
+<div *ngIf="this.showEvents===true">
+  <table class="table table-bordered">
+
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Starts at</th>
+        <th>Ends at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let event of events; let index = index">
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="event.title"
+            (keyup)="refresh.next()">
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="event.start"
+            (ngModelChange)="refresh.next()"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder="Not set">
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="event.end"
+            (ngModelChange)="refresh.next()"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder="Not set">
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="events.splice(index, 1); refresh.next()">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+ </mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click) ='sendMessage()'  [mat-dialog-close]="true" cdkFocusInitial>Done</button>
+</mat-dialog-actions>
