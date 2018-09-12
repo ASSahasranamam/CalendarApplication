@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import 'flatpickr/dist/flatpickr.css';
 import { AppComponent } from './app.component';
@@ -11,12 +11,14 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 import {MatButtonToggleModule,
    MatButtonModule,MatDividerModule,
     MatExpansionModule,MatTabsModule,
-  MatDialogModule} from '@angular/material'
+  MatDialogModule, MatFormFieldModule,MatSelectModule,
+    MatInputModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material'
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -35,12 +37,14 @@ import {DialogformService} from './dialogform.service'
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     NgbModalModule.forRoot(),
 FlatpickrModule.forRoot(),
 CalendarModule.forRoot(),
+NgMultiSelectDropDownModule.forRoot(),
 
     //AngularMaterials
     MatButtonModule,
@@ -49,6 +53,10 @@ CalendarModule.forRoot(),
     MatExpansionModule,
     MatTabsModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+      MatInputModule,
+      MatDatepickerModule,MatNativeDateModule
 
   ],
   entryComponents: [

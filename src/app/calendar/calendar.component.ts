@@ -66,7 +66,9 @@ constructor(public dialog: MatDialog, private dservice: DialogformService ) {}
 openDialog() {
   const dialogRef = this.dialog.open(DialogboxComponent, {
 
-  minWidth: '500px'
+  minWidth: '50%',
+  width: '837px'
+
 });
   this.dservice.setDate(this.clickedDate)
 console.log(this.clickedDate)

@@ -1,4 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+import { NgZone, ViewChild} from '@angular/core';
+import {take} from 'rxjs/operators';
+
 import {DialogformService} from '../dialogform.service'
 import { CalendarEvent } from 'angular-calendar';
 import {
@@ -11,6 +15,8 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
+import { Subject } from 'rxjs/Subject';
+
 
 @Component({
   selector: 'app-dialogbox',
@@ -24,14 +30,28 @@ export class DialogboxComponent implements OnInit {
   result: string = "xxxx";
   eventTitle: string = 'title';
   events: CalendarEvent[] =[]
-   id: number
+   id: number;
   showEvents: boolean;
-  constructor( private dservice: DialogformService) {
+  showScheduler: boolean = false;
+  refresh: Subject<any> = new Subject();
+  selected: string ='minutes'
+  dateNull: boolean;
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+  constructor( private dservice: DialogformService, private ngZone: NgZone) {
    }
 
   ngOnInit() {
     this.datex = this.dservice.getDate()
-
+    console.log(this.datex)
+    if( this.datex === undefined){
+      this.showEvents= false;
+      this.showScheduler = true;
+      this.dateNull = true
+    }else{
+      this.dateNull = false;
+    }
     this.dservice.eventsHolder.subscribe(events => {
     this.events = events;
     this.refresh.next()
@@ -43,6 +63,27 @@ export class DialogboxComponent implements OnInit {
       this.showEvents = true;
     }
     console.log(this.showEvents)
+    console.log(this.showScheduler)
+
+    this.dropdownList = [
+      { item_id: 1, item_text: 'John' },
+      { item_id: 2, item_text: 'Bob' },
+      { item_id: 3, item_text: 'Chuck' },
+      { item_id: 4, item_text: 'Alex' },
+      { item_id: 5, item_text: 'LeBron James' }
+    ];
+    this.selectedItems = [
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
 }
 
   sendMessage(): void {
@@ -53,19 +94,34 @@ export class DialogboxComponent implements OnInit {
       title: this.eventTitle,
       start: startOfDay(this.datex),
       end: endOfDay(this.datex),
+
     //  color: 'red',
       draggable: true,
       resizable: {
         beforeStart: true,
-        afterEnd: true
+        afterEnd: true,
+        with: []
       }
     };
     this.dservice.addEvent(this.event)
-    this.refresh.next()
   }
 
+  onItemSelect (item:any) {
+      console.log(item);
+    }
+    onSelectAll (items: any) {
+      console.log(items);
+    }
   message: string = "Aaaand this works!!"
 
+scheduleEvent(): void{
 
+  this.showEvents=false;
+  this.showScheduler=true;
+
+}
+
+
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
 }
