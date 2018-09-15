@@ -36,12 +36,12 @@ sample: CalendarEvent= {
   }
 } ;
 private editInfo = new BehaviorSubject<CalendarEvent>( this.sample);
-
 private editHolder= this.editInfo.asObservable();
 
 
 private eventsInfo = new BehaviorSubject<CalendarEvent[]>( this.events);
 public eventsHolder= this.eventsInfo.asObservable();
+
 
 
   constructor(
@@ -65,6 +65,13 @@ addEvent(res: CalendarEvent){
   this.events.push(this.sample)
 
 }
+
+
+schedEvent(res: any){
+
+
+}
+
 getString(): string{
   return this.exString;
 }

@@ -39,6 +39,29 @@ export class DialogboxComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+  timeSetting: string ="Duration"
+
+  jsonEvent = {
+      title: this.eventTitle,
+      dateEvent: this.datex,
+      start: startOfDay(this.datex),
+      end: endOfDay(this.datex),
+
+    //  color: 'red',
+      draggable: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      with: [],
+      duration: 30,
+      priority: 'Normal',
+      durationUnit: 'Minutes',
+      description: ''
+
+
+    };
+
   constructor( private dservice: DialogformService, private ngZone: NgZone) {
    }
 
@@ -86,6 +109,17 @@ export class DialogboxComponent implements OnInit {
 
 }
 
+  scheduleEvent(): void{
+
+    this.showEvents = true
+    console.log('send');
+    this.dservice.setString('this Works')
+
+    this.dservice.schedEvent(this.jsonEvent)
+
+
+  }
+
   sendMessage(): void {
     this.showEvents = true
     console.log('send');
@@ -114,7 +148,7 @@ export class DialogboxComponent implements OnInit {
     }
   message: string = "Aaaand this works!!"
 
-scheduleEvent(): void{
+scheduleEventshow(): void{
 
   this.showEvents=false;
   this.showScheduler=true;
