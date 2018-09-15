@@ -100,8 +100,8 @@ export class DialogboxComponent implements OnInit {
       resizable: {
         beforeStart: true,
         afterEnd: true,
-        with: []
-      }
+      },
+
     };
     this.dservice.addEvent(this.event)
   }

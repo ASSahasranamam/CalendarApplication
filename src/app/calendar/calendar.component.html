@@ -1,5 +1,5 @@
 
-<div class =" col-12 row " >
+<div class =" col-12 container row " style="padding: 20px;" >
   <div class = " sideL col-2 total"  >
 
     <h3 style="text-align:center"> Tasks</h3>
@@ -122,14 +122,8 @@
         </div>
       </div>
     </div>
-    <br>
 
-<div class="alert alert-info">
-  Click on a day on the view.
-  <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
-</div>
-
-<div [ngSwitch]="view">
+<div [ngSwitch]="view" >
   <mwl-calendar-month-view
     *ngSwitchCase="'month'"
     [viewDate]="viewDate"
