@@ -7,7 +7,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const mongoose = require('mongoose');
+
 var app = express();
+
+var cors=require('cors');
+
+app.use(cors({origin:true,credentials: true}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -15,9 +21,10 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -36,6 +43,14 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+mongoose.connect('mongodb://localhost/calendarDB',{useNewUrlParser: true}, function (err) {
+
+   if (err) throw err;
+
+   console.log('Successfully connected');
+
 });
 
 module.exports = app;

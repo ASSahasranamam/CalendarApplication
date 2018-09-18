@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {Observable} from 'rxjs/Rx';
+import { Http, Headers, RequestOptions,HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -7,16 +10,22 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private router : Router) {
+  constructor(private router : Router, private http: Http) {
    }
-email: string
-password: string
-sReg: boolean
-sLogin: boolean
+name: string;
+email: string;
+password: string;
+sReg: boolean;
+sLogin: boolean;
+reg: any
 
+private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
+private options = new RequestOptions({ headers: this.headers });
 
   ngOnInit() {
     this.showLogin()
+
+
   }
 
    add() : void {
@@ -44,4 +53,21 @@ console.log(this.sLogin, 'sLogin -reg')
 cal() : void {
 this.router.navigate(['/calendar'])
 }
+
+getComments() : void {
+  this.reg = {
+        email:  this.email,
+        password: this.password,
+        name: this.name
+      }
+console.log(this.reg)
+ this.http.post('http://localhost:3000/users/register', JSON.stringify(this.reg), this.options).subscribe(
+   res => {
+     console.log("response")
+     console.log(res);
+  //   let resProc = res.json();
+});
+
+}
+
 }

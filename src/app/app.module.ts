@@ -5,6 +5,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import 'flatpickr/dist/flatpickr.css';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -36,6 +38,7 @@ import {DialogformService} from './dialogform.service'
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
