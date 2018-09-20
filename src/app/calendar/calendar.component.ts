@@ -1,5 +1,9 @@
 import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
-import { CalendarEvent } from 'angular-calendar';
+import {
+  CalendarEvent,
+  CalendarEventTimesChangedEvent
+} from 'angular-calendar';
+
 import {MatDialog} from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
@@ -92,4 +96,18 @@ receiveMessage($event){
   console.log(this.message)
 }
 
+eventTimesChanged({
+  event,
+  newStart,
+  newEnd
+}: CalendarEventTimesChangedEvent): void {
+  event.start = newStart;
+  event.end = newEnd;
+  this.refresh.next();
+}
+
+eventClicked({ event }: { event: CalendarEvent }): void {
+  console.log('Event clicked', event);
+}
+}
 }

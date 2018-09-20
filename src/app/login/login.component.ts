@@ -46,12 +46,19 @@ showLogin() : void {
 
   this.sReg = false;
   this.sLogin = true;
-console.log(this.sReg, 'showReg -reg')
-console.log(this.sLogin, 'sLogin -reg')
+  console.log(this.sReg, 'showReg -reg')
+  console.log(this.sLogin, 'sLogin -reg')
 
 }
 cal() : void {
-this.router.navigate(['/calendar'])
+  this.router.navigate(['/calendar'])
+  this.http.post('http://localhost:3000/users/register', JSON.stringify(this.reg), this.options).subscribe(
+    res => {
+      console.log("response")
+      console.log(res);
+   //   let resProc = res.json();
+ });
+
 }
 
 getComments() : void {

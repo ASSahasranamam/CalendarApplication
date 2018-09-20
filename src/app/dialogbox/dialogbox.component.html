@@ -28,7 +28,22 @@
           </mat-form-field>
 
   </td>
-      <td>
+  <td *ngIf="timeSetting == 'Appointment'" style="margin:10px">
+
+        <input
+          class="form-control"
+          type="text"
+          mwlFlatpickr
+          [(ngModel)]="jsonEvent.start"
+          (ngModelChange)="refresh.next()"
+          [altInput]="true"
+          [convertModelValue]="true"
+          [enableTime]="true"
+          dateFormat="Y-m-dTH:i"
+          altFormat="F j, Y H:i"
+          placeholder='Click to enter Start Date'>
+</td>
+<td *ngIf="timeSetting == 'Duration'">
 
         <mat-form-field >
           <input matInput [matDatepicker]="picker1" placeholder="Date" [(ngModel)]="datex">
@@ -37,12 +52,32 @@
         </mat-form-field>
 </td>
 
-      <td style='width:20%' >
-        <mat-form-field   >
+      <td style='width:20%' *ngIf="timeSetting == 'Duration'" >
+
+
+
+        <mat-form-field >
           <input matInput  type='number' placeholder="Duration" [(ngModel)]="jsonEvent.duration" >
         </mat-form-field>
 </td>
-<td>
+
+<td *ngIf="timeSetting == 'Appointment'" style="padding:10px">
+  <input
+    class="form-control"
+    type="text"
+    mwlFlatpickr
+    [(ngModel)]="jsonEvent.end"
+    (ngModelChange)="refresh.next()"
+    [altInput]="true"
+    [convertModelValue]="true"
+    [enableTime]="true"
+    dateFormat="Y-m-dTH:i"
+    altFormat="F j, Y H:i"
+    placeholder="Click to edit EndTime">
+
+</td>
+
+<td *ngIf="timeSetting == 'Duration'">
         <mat-form-field>
     <mat-select placeholder="Click to Edit" [(value)]="jsonEvent.durationUnit" [(ngModel)]="jsonEvent.durationUnit">
       <mat-option value="Minutes">Minutes</mat-option>
@@ -185,6 +220,6 @@
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button *ngIf="showScheduler == false" (click) ='sendMessage()'  [mat-dialog-close]="true" cdkFocusInitial>Done</button>
-  <button mat-button *ngIf="showScheduler == true" cdkFocusInitial name="button">CheckAvailability</button>
+  <button mat-button *ngIf="showScheduler == true" (click) ='scheduleEvent()'  [mat-dialog-close]="true" cdkFocusInitial>CheckAvailability</button>
 
 </mat-dialog-actions>

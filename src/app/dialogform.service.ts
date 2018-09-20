@@ -23,6 +23,7 @@ export class DialogformService {
 
 exString: string ='yyy'
 exDate: Date;
+infoEventsx: any = []
 events : CalendarEvent[] = [];
 sample: CalendarEvent= {
   title: 'New event',
@@ -43,6 +44,8 @@ private eventsInfo = new BehaviorSubject<CalendarEvent[]>( this.events);
 public eventsHolder= this.eventsInfo.asObservable();
 
 
+private infoEvents = new BehaviorSubject<any[]>( this.infoEvents ]);
+public infoEventsHolder= this.infoEvents.asObservable();
 
   constructor(
 ) { }
@@ -68,7 +71,21 @@ addEvent(res: CalendarEvent){
 
 
 schedEvent(res: any){
+  this.sample = {
 
+    title: res.title
+    start: res.start,
+    end: res.end),
+    color: 'red',
+    draggable: true,
+    resizable: {
+      beforeStart: true,
+      afterEnd: true
+    }
+  }
+
+  this.events.push(this.sample)
+  this.infoEventsx.push(this.res)
 
 }
 
