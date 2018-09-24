@@ -85,32 +85,6 @@ console.log(this.clickedDate)
 }
 
 
-//got a  job
-hello(): void {
-  console.log("hello");
-  this.test.push('hello')
-  console.log(this.test);
-}
-
-receiveMessage($event){
-  this.message = $event;
-  console.log(this.message)
-}
-
-eventTimesChanged({
-  event,
-  newStart,
-  newEnd
-}: CalendarEventTimesChangedEvent): void {
-  event.start = newStart;
-  event.end = newEnd;
-  this.refresh.next();
-}
-
-eventClicked({ event }: { event: CalendarEvent }): void {
-  console.log('Event clicked', event);
-}
-
 dashCalSwitch(): void {
   if(this.showDashboard== true){
     this.showDashboard= false

@@ -137,7 +137,9 @@ export class DialogboxComponent implements OnInit {
       },
 
     };
-    this.dservice.addEvent(this.event)
+    this.dservice.addEvent(this.event);
+    this.refresh.next()
+
   }
 
   onItemSelect (item:any) {

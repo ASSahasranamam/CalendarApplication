@@ -111,13 +111,6 @@ export class CalViewerComponent implements OnInit {
     console.log('Event clicked', event);
   }
 
-  dashCalSwitch(): void {
-    if(this.showDashboard== true){
-      this.showDashboard= false
-    } else{
-      this.showDashboard = true
-    }
-  }
 
 
 }

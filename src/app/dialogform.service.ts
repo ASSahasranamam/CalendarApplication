@@ -44,7 +44,7 @@ private eventsInfo = new BehaviorSubject<CalendarEvent[]>( this.events);
 public eventsHolder= this.eventsInfo.asObservable();
 
 
-private infoEvents = new BehaviorSubject<any[]>( this.infoEvents ]);
+private infoEvents = new BehaviorSubject<any[]>( []);
 public infoEventsHolder= this.infoEvents.asObservable();
 
   constructor(
@@ -70,13 +70,13 @@ addEvent(res: CalendarEvent){
 }
 
 
-schedEvent(res: any){
+schedEvent( res: any){
   this.sample = {
 
     title: res.title,
     start: res.start,
     end: res.end,
-    color: 'red',
+    //color: 'red',
     draggable: true,
     resizable: {
       beforeStart: true,
@@ -85,7 +85,7 @@ schedEvent(res: any){
   }
 
   this.events.push(this.sample)
-  this.infoEventsx.push(this.res)
+  this.infoEventsx.push(res)
 
 }
 
