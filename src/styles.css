@@ -26,3 +26,7 @@ body {
 nav {
   box-shadow: -2px 1px 20px 0px;
 }
+app-root {
+
+  max-height: 40vh
+}

@@ -29,6 +29,7 @@ import {
 })
 export class CalendarComponent implements OnInit {
 
+  showDashboard: boolean  = true;
   view: string = 'month';
   test: string[] =[];
     viewDate: Date = new Date();
@@ -109,5 +110,13 @@ eventTimesChanged({
 eventClicked({ event }: { event: CalendarEvent }): void {
   console.log('Event clicked', event);
 }
+
+dashCalSwitch(): void {
+  if(this.showDashboard== true){
+    this.showDashboard= false
+  } else{
+    this.showDashboard = true
+  }
 }
+
 }

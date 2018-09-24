@@ -73,9 +73,9 @@ addEvent(res: CalendarEvent){
 schedEvent(res: any){
   this.sample = {
 
-    title: res.title
+    title: res.title,
     start: res.start,
-    end: res.end),
+    end: res.end,
     color: 'red',
     draggable: true,
     resizable: {

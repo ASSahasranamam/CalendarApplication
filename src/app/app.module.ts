@@ -26,14 +26,18 @@ import {MatButtonToggleModule,
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DialogboxComponent } from './dialogbox/dialogbox.component';
 
-import {DialogformService} from './dialogform.service'
+import {DialogformService} from './dialogform.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CalViewerComponent } from './cal-viewer/cal-viewer.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CalendarComponent,
-    DialogboxComponent
+    DialogboxComponent,
+    DashboardComponent,
+    CalViewerComponent
   ],
   imports: [
     BrowserModule,
