@@ -1,8 +1,12 @@
-import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
+import { DateTime } from 'luxon';
+
+import * as moment from 'moment'
+import 'moment-recur-ts'
 
 import {MatDialog} from '@angular/material';
 
@@ -11,15 +15,46 @@ import { Subject } from 'rxjs/Subject';
 import {DialogboxComponent} from '../dialogbox/dialogbox.component'
 import {DialogformService} from  '../dialogform.service'
 import {
+  startOfMonth,
+  startOfWeek,
   startOfDay,
+  endOfMonth,
+  endOfWeek,
   endOfDay,
   subDays,
   addDays,
-  endOfMonth,
   isSameDay,
   isSameMonth,
   addHours
 } from 'date-fns';
+
+const colors: any = {
+  red: {
+    primary: '#ad2121',
+    secondary: '#FAE3E3'
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF'
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA'
+  }
+};
+const startOfPeriod: any = {
+  month: startOfMonth,
+  week: startOfWeek,
+  day: startOfDay
+};
+
+const endOfPeriod: any = {
+  month: endOfMonth,
+  week: endOfWeek,
+  day: endOfDay
+};
+
+
 
 @Component({
   selector: 'app-calendar',
@@ -38,14 +73,28 @@ export class CalendarComponent implements OnInit {
   clickedDate: Date;
   refresh: Subject<any> = new Subject();
 
+  recurringEvents: any[] = []
+  startDate = moment([ moment().year(), moment().month()]);
+
+ // Clone the value before .endOf()
+  endDate = moment(this.startDate).endOf('month');
+  recurrence = this.startDate.recur(this.endDate).every(["Friday", "Monday"]).daysOfWeek();
+
+
     ngOnInit(){
 
       this.dservice.eventsHolder.subscribe(events => {
       this.events = events;
       this.refresh.next()
 
+
+
     });
-    }
+
+
+
+    // array is 'year', 'month', 'day', e
+  }
 
     addEvent(evDate: Date): void {
   //
@@ -62,6 +111,10 @@ export class CalendarComponent implements OnInit {
   // });
 //  this.refresh.next();
 }
+
+
+
+
 
 openDiaxlog(evDate: Date): void{
 

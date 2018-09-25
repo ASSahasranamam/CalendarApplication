@@ -20,7 +20,8 @@ import {MatButtonToggleModule,
    MatButtonModule,MatDividerModule,
     MatExpansionModule,MatTabsModule,
   MatDialogModule, MatFormFieldModule,MatSelectModule,
-    MatInputModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material'
+    MatInputModule, MatDatepickerModule, MatNativeDateModule,
+  MatCheckboxModule} from '@angular/material'
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -49,9 +50,9 @@ import { CalViewerComponent } from './cal-viewer/cal-viewer.component'
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     NgbModalModule.forRoot(),
-FlatpickrModule.forRoot(),
-CalendarModule.forRoot(),
-NgMultiSelectDropDownModule.forRoot(),
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
 
     //AngularMaterials
     MatButtonModule,
@@ -62,8 +63,10 @@ NgMultiSelectDropDownModule.forRoot(),
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-      MatInputModule,
-      MatDatepickerModule,MatNativeDateModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule
 
   ],
   entryComponents: [

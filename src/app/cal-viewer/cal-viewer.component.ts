@@ -1,4 +1,4 @@
-import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent
@@ -106,6 +106,7 @@ export class CalViewerComponent implements OnInit {
     event.end = newEnd;
     this.refresh.next();
   }
+
 
   eventClicked({ event }: { event: CalendarEvent }): void {
     console.log('Event clicked', event);

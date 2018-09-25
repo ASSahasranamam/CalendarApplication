@@ -52,12 +52,119 @@
 
   </div>
 <div class="col-8  viewer " *ngIf="showDashboard==false">
-  <app-cal-viewer></app-cal-viewer>
+  <div class=" "   >
+    <ng-template #modalContent let-close="close">
+      <div class="modal-header">
+        <h5 class="modal-title">Event action occurred</h5>
+        <button type="button" class="close" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          Action:
+          <pre>{{ modalData?.action }}</pre>
+        </div>
+        <div>
+          Event:
+          <pre>{{ modalData?.event | json }}</pre>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+      </div>
+    </ng-template>
+
+    <div class="row text-center" style="padding-bottom: 10px">
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div
+            class="btn btn-primary"
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="activeDayIsOpen = false">
+            Previous
+          </div>
+          <div
+            class="btn btn-outline-secondary"
+            mwlCalendarToday
+            [(viewDate)]="viewDate">
+            Today
+          </div>
+          <div
+            class="btn btn-primary"
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="activeDayIsOpen = false">
+            Next
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div
+            class="btn btn-primary"
+            (click)="view = 'month'"
+            [class.active]="view === 'month'">
+            Month
+          </div>
+          <div
+            class="btn btn-primary"
+            (click)="view = 'week'"
+            [class.active]="view === 'week'">
+            Week
+          </div>
+          <div
+            class="btn btn-primary"
+            (click)="view = 'day'"
+            [class.active]="view === 'day'">
+            Day
+          </div>
+        </div>
+      </div>
+    </div>
+  <mat-divider></mat-divider>
+  <div [ngSwitch]="view" >
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [refresh]="refresh"
+    [events]="events"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="clickedDate = $event.day.date;
+    view= 'day'; viewDate= $event.day.date ">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [refresh]="refresh"
+    [events]="events"
+    (dayHeaderClicked)="clickedDate = $event.day.date"
+    (eventClicked)="eventClicked($event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+     (eventTimesChanged)="eventTimesChanged($event)"
+     (eventClicked)="eventClicked($event)"
+     >
+
+  </mwl-calendar-day-view>
+  </div>
+
+  </div>
 </div>
   <div class="col-2 eventShowcase" *ngIf="showDashboard==false">
     <h3> Upccoming Events </h3>
     <mat-divider></mat-divider>
-
+    {{viewDate}}
   </div>
   <div class="col-10   container" *ngIf="showDashboard" style="padding: 20px;" >
     <app-dashboard></app-dashboard>

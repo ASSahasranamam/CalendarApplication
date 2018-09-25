@@ -3,19 +3,42 @@ import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import { NgZone, ViewChild} from '@angular/core';
 import {take} from 'rxjs/operators';
 
+import * as moment from 'moment'
+import 'moment-recur-ts'
+
+
 import {DialogformService} from '../dialogform.service'
 import { CalendarEvent } from 'angular-calendar';
 import {
+  startOfMonth,
+  startOfWeek,
   startOfDay,
+  endOfMonth,
+  endOfWeek,
   endOfDay,
   subDays,
   addDays,
-  endOfMonth,
   isSameDay,
   isSameMonth,
   addHours
 } from 'date-fns';
 import { Subject } from 'rxjs/Subject';
+import { Color} from 'color';
+
+const colors: any = {
+  red: {
+    primary: '#ad2121',
+    secondary: '#FAE3E3'
+  },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF'
+  },
+  yellow: {
+    primary: '#e3bc08',
+    secondary: '#FDF1BA'
+  }
+};
 
 
 @Component({
@@ -39,7 +62,20 @@ export class DialogboxComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-  timeSetting: string ="Duration"
+
+  timeSetting: string ="Duration";
+  recurrence: boolean = false;
+  recurrenceFreq: string = "Week"
+  recurrenceWeek: string[]=[]
+
+  view: string = 'month';
+  test: string[] =[];
+  viewDate: Date = new Date();
+  recurringEvents: any[] = [];
+
+  startDate: any;
+  endDate:any;
+  RecuttingEvents: any;
 
   jsonEvent = {
       title: this.eventTitle,
@@ -66,7 +102,12 @@ export class DialogboxComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.datex = this.dservice.getDate()
+    this.viewDate = this.dservice.getDate()
+    this.startDate = moment([ moment(this.viewDate).year(), moment(this.viewDate).month()]);
+
+   // Clone the value before .endOf()
+    this.endDate = moment(this.startDate).endOf('month');
+
     console.log(this.datex)
     if( this.datex === undefined){
       this.showEvents= false;
@@ -107,6 +148,8 @@ export class DialogboxComponent implements OnInit {
       allowSearchFilter: true
     };
 
+
+
 }
 
   scheduleEvent(): void{
@@ -114,10 +157,19 @@ export class DialogboxComponent implements OnInit {
     this.showEvents = true
     console.log('send');
     this.dservice.setString('this Works')
+      if(this.recurrence==true){
+        let holder = this.startDate.recur(this.endDate).every(this.recurrenceWeek).daysOfWeek().all("L")
+        for(let i of holder){
+          this.jsonEvent.start = moment(i).add({hours: moment(this.jsonEvent.duration).hours(), minutes: moment(this.jsonEvent.duration).minutes() }).toDate()
+          this.jsonEvent.end = moment(i).add({hours: moment(this.jsonEvent.duration).hours(), minutes: moment(this.jsonEvent.duration).minutes() }).toDate()
+          this.dservice.schedEvent(this.jsonEvent)
+          this.refresh.next()
 
-    this.dservice.schedEvent(this.jsonEvent)
-
-
+        }
+      }else{
+          this.dservice.schedEvent(this.jsonEvent)
+          this.refresh.next()
+        }
   }
 
   sendMessage(): void {
@@ -156,6 +208,8 @@ scheduleEventshow(): void{
   this.showScheduler=true;
 
 }
+
+
 
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;

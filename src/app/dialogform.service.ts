@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject'
 
-import { CalendarEvent } from 'angular-calendar';
 import {
+  getMonth,
+  startOfMonth,
+  startOfWeek,
   startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
   endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
+  endOfWeek,
+  endOfDay
 } from 'date-fns';
+import { CalendarEvent } from 'angular-calendar';
+
 
 
 @Injectable({
@@ -19,8 +19,11 @@ import {
 })
 
 
-export class DialogformService {
 
+
+
+export class DialogformService {
+viewDate: Date = new Date()
 exString: string ='yyy'
 exDate: Date;
 infoEventsx: any = []
@@ -47,12 +50,14 @@ public eventsHolder= this.eventsInfo.asObservable();
 private infoEvents = new BehaviorSubject<any[]>( []);
 public infoEventsHolder= this.infoEvents.asObservable();
 
+private dateInfo = new BehaviorSubject<Date>(this.viewDate);
+public dateInfoHolder = this.dateInfo.asObservable;
   constructor(
 ) { }
 
 setDate(datex: Date){
-  this.exDate = datex;
-  console.log('ServiceSam[lpe]',this.exDate)
+  this.viewDate = datex;
+  console.log('ServiceSam[lpe]',this.viewDate)
 }
 
 setString(res: string){
@@ -95,6 +100,8 @@ getString(): string{
 
 
 getDate(): Date {
-  return this.exDate;
+  return this.viewDate;
 }
+
+
 }

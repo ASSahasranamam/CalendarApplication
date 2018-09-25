@@ -2,20 +2,54 @@
 <h3 mat-dialog-title *ngIf="dateNull == true"> PlanEvent</h3>
 
 <mat-dialog-content class="mat-typography">
-
+  <div class="container ">
     <mat-form-field>
     <mat-select placeholder="TimeSettings" *ngIf="showScheduler == true" [(ngModel)]="timeSetting">
-    <mat-option value="Duration">Duration</mat-option>
+    <mat-option value="Duration">duration basedAppt</mat-option>
     <mat-option value="Appointment">Appointment</mat-option>
+    <mat-option value="Task">Task</mat-option>
+    <mat-option value="Event">Event</mat-option>
+
     </mat-select>
+
     </mat-form-field>
+    <mat-checkbox style="margin-left:10px; padding:5px" [(ngModel)]="recurrence">Recuring Event </mat-checkbox>
+
+    <mat-form-field *ngIf="recurrence == true" style="padding:5px">
+    <mat-select placeholder="RecurringEvery"  [(ngModel)]="recurrenceFreq">
+    <mat-option value="Month">Month</mat-option>
+    <mat-option value="Week">Weekly</mat-option>
+    <mat-option value="Daily">Everyday</mat-option>
+    </mat-select>
+
+    </mat-form-field>
+
+    <mat-form-field *ngIf=" recurrence == true && recurrenceFreq == 'Week'"  style="padding:5px">
+    <mat-select placeholder="RecurringEvery" [(ngModel)]="recurrenceWeek" multiple>
+    <mat-option value="Monday">Monday</mat-option>
+    <mat-option value="Tuesday">Tuesday</mat-option>
+    <mat-option value="Wednesday">Wednesday</mat-option>
+    <mat-option value="Thursday">Thursday</mat-option>
+    <mat-option value="Friday">Friday</mat-option>
+
+    </mat-select>
+
+    </mat-form-field>
+
+    {{recurrenceWeek}}
+
+  </div>
+
+
+
+<!--
   <div style="margin: 10px 0;"class="btn-group float-right" role="group" aria-label="Basic example">
 
     <button class="   btn btn-primary"  (click) ='scheduleEventshow()' > Schedule Event</button>
   <button class="   btn btn-primary"  (click) ='sendMessage()' > Add Task</button>
 </div>
 
-  <br>
+  <br> -->
 
 <div class="" *ngIf="this.showScheduler== true">
   <div class="container-fluid " style="padding:20px">
@@ -28,7 +62,7 @@
           </mat-form-field>
 
   </td>
-  <td *ngIf="timeSetting == 'Appointment'" style="margin:10px">
+  <td *ngIf="timeSetting == 'Appointment'   " style="margin:10px">
 
         <input
           class="form-control"
@@ -52,16 +86,16 @@
         </mat-form-field>
 </td>
 
-      <td style='width:20%' *ngIf="timeSetting == 'Duration'" >
+      <td style='width:20%' *ngIf="timeSetting == 'Duration' || timeSetting == 'Event'" >
 
 
 
         <mat-form-field >
-          <input matInput  type='number' placeholder="Duration" [(ngModel)]="jsonEvent.duration" >
+          <input matInput  type='time' placeholder="Duration" [(ngModel)]="jsonEvent.duration" >
         </mat-form-field>
 </td>
 
-<td *ngIf="timeSetting == 'Appointment'" style="padding:10px">
+<td *ngIf="timeSetting == 'Appointment' || timeSetting == 'Task' " style="padding:10px">
   <input
     class="form-control"
     type="text"
@@ -84,6 +118,7 @@
       <mat-option value="Hours">Hours</mat-option>
       <mat-option value="FullDay">FullDay</mat-option>
     </mat-select>
+
   </mat-form-field>
 
 </td>
@@ -129,6 +164,12 @@
 
     </td>
 
+  </tr>
+
+  <tr>
+    <td>
+      <button mat-button class="btn" name="button"> Attach Documents</button>
+    </td>
   </tr>
 </table>
 
