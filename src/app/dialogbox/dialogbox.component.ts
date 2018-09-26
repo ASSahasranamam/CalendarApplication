@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {CdkTextareaAutosize} from '@angular/cdk/text-field';
 import { NgZone, ViewChild} from '@angular/core';
 import {take} from 'rxjs/operators';
-
+import { FormControl, Validators} from '@angular/forms'
 import * as moment from 'moment'
 import 'moment-recur-ts'
 
@@ -67,6 +67,9 @@ export class DialogboxComponent implements OnInit {
   recurrence: boolean = false;
   recurrenceFreq: string = "Week"
   recurrenceWeek: string[]=[]
+  recurrenceMonth: string='';
+  DayList = [1,2,3,4,5,6,7,8,9,10,11, 12, 13, 14, 15, 16, 17, 18, 19, 20,21,22,23,24,25,26,27,28,29];
+  recurrenceDay: number=1;
 
   view: string = 'month';
   test: string[] =[];
@@ -97,6 +100,7 @@ export class DialogboxComponent implements OnInit {
 
 
     };
+    rateControl = new FormControl("", [Validators.max(100), Validators.min(1)])
 
   constructor( private dservice: DialogformService, private ngZone: NgZone) {
    }
@@ -166,11 +170,16 @@ export class DialogboxComponent implements OnInit {
           this.endDate = moment([ moment(this.jsonEvent.start).add('y',1).year() , moment(this.jsonEvent.start).month()])
 
         }
-
+        let holder;
        // Clone the value before .endOf()
       //  this.endDate = moment(this.startDate).endOf('month');
-
-        let holder = this.startDate.recur(this.endDate).every(this.recurrenceWeek).daysOfWeek().all("L")
+        if(this.recurrenceFreq='Week'){
+           holder = this.startDate.recur(this.endDate).every(this.recurrenceWeek).daysOfWeek().all("L")
+      } else if(this.recurrenceFreq='Month'){
+         holder = this.startDate.recur(this.endDate).every(this.recurrenceMonth).daysOfMonth().all("L");
+      } else if(this.recurrenceFreq='Daily'){
+         holder = this.startDate.recur(this.endDate).every(this.recurrenceDay).day().all("L");
+      }
         for(let i of holder){
           this.jsonEvent.start = moment(i).add({hours: moment(this.jsonEvent.duration).hours(), minutes: moment(this.jsonEvent.duration).minutes() }).toDate()
           this.jsonEvent.end = moment(i).add({hours: moment(this.jsonEvent.duration).hours(), minutes: moment(this.jsonEvent.duration).minutes() }).toDate()
