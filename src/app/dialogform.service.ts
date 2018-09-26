@@ -18,15 +18,14 @@ import { CalendarEvent } from 'angular-calendar';
   providedIn: 'root'
 })
 
-
-
-
-
 export class DialogformService {
+userID: string;
 viewDate: Date = new Date()
 exString: string ='yyy'
 exDate: Date;
-infoEventsx: any = []
+infoEventsx: any[] = []
+
+
 events : CalendarEvent[] = [];
 sample: CalendarEvent= {
   title: 'New event',
@@ -47,7 +46,7 @@ private eventsInfo = new BehaviorSubject<CalendarEvent[]>( this.events);
 public eventsHolder= this.eventsInfo.asObservable();
 
 
-private infoEvents = new BehaviorSubject<any[]>( []);
+private infoEvents = new BehaviorSubject<any[]>( this.infoEventsx);
 public infoEventsHolder= this.infoEvents.asObservable();
 
 private dateInfo = new BehaviorSubject<Date>(this.viewDate);
@@ -91,7 +90,6 @@ schedEvent( res: any){
 
   this.events.push(this.sample)
   this.infoEventsx.push(res)
-
 }
 
 getString(): string{

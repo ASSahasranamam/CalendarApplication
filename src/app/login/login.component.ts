@@ -57,9 +57,40 @@ cal() : void {
       console.log("response")
       console.log(res);
    //   let resProc = res.json();
- });
+ },
+
+  error => {
+    alert("error: " + error);
+  });
 
 }
+
+login(): any{
+
+  this.reg = {
+    email:  this.email,
+    password: this.password
+
+  }
+  this.http.post('http://localhost:3000/users/login', JSON.stringify(this.reg), this.options).subscribe(
+    res => {
+      console.log("response")
+      console.log(res);
+      if(res["_body"] =="invalidLogin"){
+        alert('Invalid Credentials')
+      } else if(res["_body"] =='greenlight'){
+        this.router.navigate(['/calendar']);
+      }
+   //   let resProc = res.json();
+ },
+
+  error => {
+    alert("error: " + error);
+  });
+
+
+}
+
 
 getComments() : void {
   this.reg = {

@@ -66,7 +66,7 @@ export class CalendarComponent implements OnInit {
 
   showDashboard: boolean  = true;
   view: string = 'month';
-  test: string[] =[];
+  eventDetails: any[] =[];
     viewDate: Date = new Date();
     message: string ='hxx';
     events: CalendarEvent[] ;
@@ -75,25 +75,33 @@ export class CalendarComponent implements OnInit {
 
   recurringEvents: any[] = []
   startDate = moment([ moment().year(), moment().month()]);
-
+  nextEvents: any[];
  // Clone the value before .endOf()
   endDate = moment(this.startDate).endOf('month');
   recurrence = this.startDate.recur(this.endDate).every(["Friday", "Monday"]).daysOfWeek();
 
+  constructor(public dialog: MatDialog, private dservice: DialogformService ) {}
 
     ngOnInit(){
+      this.nextEvents=[];
 
       this.dservice.eventsHolder.subscribe(events => {
       this.events = events;
       this.refresh.next()
-
+      this.displaySelected()
 
 
     });
 
+    this.dservice.infoEventsHolder.subscribe(infoEventsx => {
+    this.eventDetails = infoEventsx;
+    this.refresh.next()
+    this.displaySelected()
 
+  });
 
-    // array is 'year', 'month', 'day', e
+  this.displaySelected();
+
   }
 
     addEvent(evDate: Date): void {
@@ -112,14 +120,9 @@ export class CalendarComponent implements OnInit {
 //  this.refresh.next();
 }
 
-
-
-
-
 openDiaxlog(evDate: Date): void{
 
 }
-constructor(public dialog: MatDialog, private dservice: DialogformService ) {}
 
 openDialog() {
   const dialogRef = this.dialog.open(DialogboxComponent, {
@@ -133,10 +136,9 @@ console.log(this.clickedDate)
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${result}`);
     this.refresh.next()
-
+    this.displaySelected()
   });
 }
-
 
 dashCalSwitch(): void {
   if(this.showDashboard== true){
@@ -145,5 +147,18 @@ dashCalSwitch(): void {
     this.showDashboard = true
   }
 }
+
+
+displaySelected(): void{
+  console.log(this.eventDetails)
+  console.log("hello")
+  for(var i of this.eventDetails){
+    if(moment(i.start).isAfter(moment())){
+      this.nextEvents.push(i)
+    }
+  }
+console.log(this.nextEvents);
+}
+
 
 }

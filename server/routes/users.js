@@ -35,8 +35,8 @@ router.post('/register', function(req, res, next) {
 });
 
 newUser.save(function(err) {
+  
     if (err) throw err;
-
     console.log('user Saved');
     console.log(newUser);
 
@@ -45,9 +45,30 @@ newUser.save(function(err) {
 res.send('Result')
 });
 
+router.post('/login', function(req, res, next) {
 
+  //res.send('respond with a resource');
+  console.log("loginInit")
 
+  console.log(req.body)
+  //console.log(req)
+  var credentials = new user({
+        email: req.body.email,
+        password: req.body.password
+});
 
+user.find({
+  email: req.body.email, password: req.body.password},
+   function (err, docs) {
 
+     console.log(docs);
+     if(docs===null){
+       res.send('invalidLogin');
+     }else{
+       res.send('greenlight')
+     }
+   });
+
+});
 
 module.exports = router;

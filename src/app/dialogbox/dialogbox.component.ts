@@ -103,10 +103,6 @@ export class DialogboxComponent implements OnInit {
 
   ngOnInit() {
     this.viewDate = this.dservice.getDate()
-    this.startDate = moment([ moment(this.viewDate).year(), moment(this.viewDate).month()]);
-
-   // Clone the value before .endOf()
-    this.endDate = moment(this.startDate).endOf('month');
 
     console.log(this.datex)
     if( this.datex === undefined){
@@ -158,6 +154,22 @@ export class DialogboxComponent implements OnInit {
     console.log('send');
     this.dservice.setString('this Works')
       if(this.recurrence==true){
+        console.log(this.jsonEvent.start)
+        if( this.jsonEvent.start.toString() == 'Invalid Date'){
+          console.log('undefined')
+          this.startDate = moment([ moment(this.viewDate).year(), moment(this.viewDate).month()])
+          this.endDate = moment([ moment(this.viewDate).add('y',1).year() , moment(this.viewDate).month()])
+          console.log( this.startDate)
+          console.log(this.endDate)
+        } else{
+          this.startDate = moment([ moment(this.jsonEvent.start).year(), moment(this.jsonEvent.start).month()]);
+          this.endDate = moment([ moment(this.jsonEvent.start).add('y',1).year() , moment(this.jsonEvent.start).month()])
+
+        }
+
+       // Clone the value before .endOf()
+      //  this.endDate = moment(this.startDate).endOf('month');
+
         let holder = this.startDate.recur(this.endDate).every(this.recurrenceWeek).daysOfWeek().all("L")
         for(let i of holder){
           this.jsonEvent.start = moment(i).add({hours: moment(this.jsonEvent.duration).hours(), minutes: moment(this.jsonEvent.duration).minutes() }).toDate()
@@ -167,6 +179,8 @@ export class DialogboxComponent implements OnInit {
 
         }
       }else{
+
+          console.log(this.jsonEvent)
           this.dservice.schedEvent(this.jsonEvent)
           this.refresh.next()
         }

@@ -21,7 +21,7 @@ import {MatButtonToggleModule,
     MatExpansionModule,MatTabsModule,
   MatDialogModule, MatFormFieldModule,MatSelectModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule,
-  MatCheckboxModule} from '@angular/material'
+  MatCheckboxModule, MatCardModule} from '@angular/material'
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -66,7 +66,8 @@ import { CalViewerComponent } from './cal-viewer/cal-viewer.component'
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatCardModule,
 
   ],
   entryComponents: [

@@ -72,3 +72,13 @@ pre {
 .viewer{
   padding: 20px;
 }
+
+.eventShowcase{
+  overflow: scroll;
+  padding-top: 10px;
+  max-height: 95vh;
+}
+
+.example-card {
+  max-width: 400px;
+}
