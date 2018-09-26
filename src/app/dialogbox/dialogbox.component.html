@@ -46,8 +46,9 @@
     </mat-form-field>
 
     <mat-form-field *ngIf=" recurrence == true && recurrenceFreq == 'Daily'">
+
       <input matInput placeholder="Interval" min="1" [(ngModel)]="recurrenceDay" [formControl]="rateControl">
-      <md-error>Range 1-100 (1 is everyday)</md-error>
+      <mat-error>Range 1-100 (1 is everyday)</mat-error>
 
     </mat-form-field>
 

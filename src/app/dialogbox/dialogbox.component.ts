@@ -100,7 +100,7 @@ export class DialogboxComponent implements OnInit {
 
 
     };
-    rateControl = new FormControl("", [Validators.max(100), Validators.min(1)])
+    rateControl = new FormControl("", [Validators.max(100), Validators.min(1), Validators.required])
 
   constructor( private dservice: DialogformService, private ngZone: NgZone) {
    }
