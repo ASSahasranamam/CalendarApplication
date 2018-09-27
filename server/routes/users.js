@@ -35,7 +35,7 @@ router.post('/register', function(req, res, next) {
 });
 
 newUser.save(function(err) {
-  
+
     if (err) throw err;
     console.log('user Saved');
     console.log(newUser);
@@ -63,9 +63,17 @@ user.find({
 
      console.log(docs);
      if(docs===null){
-       res.send('invalidLogin');
+       res.send({message:'invalidLogin' }
+
+         );
      }else{
-       res.send('greenlight')
+       res.send(
+
+         {
+          message :'greenlight',
+          userID: docs[0]._id,
+          name: docs[0].name
+        })
      }
    });
 

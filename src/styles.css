@@ -8,21 +8,3 @@ body {
   max-height : 100vh;
   overflow: auto;
 }
-.col-12{
-  padding-left: 0px;
-  padding-right: 0px;
-
-
-}
-.row {
-  margin: 0 0 0 0;
-}
-.btn-link{
-  color: #4f4f4f;
-}
-.fas{
-  color: white;
-}
-nav {
-  box-shadow: -2px 1px 20px 0px;
-}

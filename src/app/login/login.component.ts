@@ -75,11 +75,12 @@ login(): any{
   this.http.post('http://localhost:3000/users/login', JSON.stringify(this.reg), this.options).subscribe(
     res => {
       console.log("response")
-      console.log(res);
-      if(res["_body"] =="invalidLogin"){
+      console.log(res.json());
+      if(res.json().message =="invalidLogin"){
         alert('Invalid Credentials')
-      } else if(res["_body"] =='greenlight'){
+      } else if(res.json().message =='greenlight'){
         this.router.navigate(['/calendar']);
+        console.log(res.json().userID)
       }
    //   let resProc = res.json();
  },
