@@ -19,11 +19,12 @@ import { CalendarEvent } from 'angular-calendar';
 })
 
 export class DialogformService {
-userID: string;
 viewDate: Date = new Date()
 exString: string ='yyy'
 exDate: Date;
 infoEventsx: any[] = []
+username: string = '';
+userID: string='';
 
 
 events : CalendarEvent[] = [];
@@ -59,12 +60,22 @@ setDate(datex: Date){
   console.log('ServiceSam[lpe]',this.viewDate)
 }
 
+getUserId(): string{
+  return this.userID
+}
+
+getUserName(): string{
+  return this.username;
+}
 setString(res: string){
   this.exString = res;
   console.log(this.exString)
 }
 
-
+setUser(userID: string, username: string){
+  this.userID= userID;
+  this.username= username;
+}
 
 addEvent(res: CalendarEvent){
   this.sample = res;

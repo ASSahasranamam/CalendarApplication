@@ -3,14 +3,14 @@ import {Router} from "@angular/router";
 import {Observable} from 'rxjs/Rx';
 import { Http, Headers, RequestOptions,HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
+import {DialogformService} from '../dialogform.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private router : Router, private http: Http) {
+  constructor(private router : Router, private http: Http, private dservice: DialogformService) {
    }
 name: string;
 email: string;
@@ -79,8 +79,9 @@ login(): any{
       if(res.json().message =="invalidLogin"){
         alert('Invalid Credentials')
       } else if(res.json().message =='greenlight'){
+        this.dservice.setUser(res.json().userID, res.json().name)
         this.router.navigate(['/calendar']);
-        console.log(res.json().userID)
+        console.log()
       }
    //   let resProc = res.json();
  },
