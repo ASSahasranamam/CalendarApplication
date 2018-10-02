@@ -39,6 +39,8 @@ sample: CalendarEvent= {
     afterEnd: true
   }
 } ;
+
+bs: string ='buy'
 private editInfo = new BehaviorSubject<CalendarEvent>( this.sample);
 private editHolder= this.editInfo.asObservable();
 
@@ -112,5 +114,13 @@ getDate(): Date {
   return this.viewDate;
 }
 
+//Set & Get buy or Sell
+setBs(option: string): void {
+  this.bs= option;
+}
+
+getBs(): string{
+    return this.bs;
+}
 
 }

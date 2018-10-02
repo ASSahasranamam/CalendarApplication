@@ -21,15 +21,17 @@ import {MatButtonToggleModule,
     MatExpansionModule,MatTabsModule,
   MatDialogModule, MatFormFieldModule,MatSelectModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule,
-  MatCheckboxModule, MatCardModule} from '@angular/material'
+  MatCheckboxModule, MatCardModule, MatMenuModule, MatIconModule
+} from '@angular/material'
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { DialogboxComponent } from './dialogbox/dialogbox.component';
 
+import { DialogboxComponent } from './dialogbox/dialogbox.component';
 import {DialogformService} from './dialogform.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CalViewerComponent } from './cal-viewer/cal-viewer.component'
+import { CalViewerComponent } from './cal-viewer/cal-viewer.component';
+import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { CalViewerComponent } from './cal-viewer/cal-viewer.component'
     CalendarComponent,
     DialogboxComponent,
     DashboardComponent,
-    CalViewerComponent
+    CalViewerComponent,
+    BuySellDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,10 +71,13 @@ import { CalViewerComponent } from './cal-viewer/cal-viewer.component'
     MatNativeDateModule,
     MatCheckboxModule,
     MatCardModule,
+    MatMenuModule,
+    MatIconModule
 
   ],
   entryComponents: [
-    DialogboxComponent
+    DialogboxComponent,
+    BuySellDialogComponent
 ],
 
   providers: [DialogformService],

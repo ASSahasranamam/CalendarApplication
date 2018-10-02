@@ -128,8 +128,8 @@
         </div>
       </div>
     </div>
-  <mat-divider></mat-divider>
   <div [ngSwitch]="view" >
+
   <mwl-calendar-month-view
     *ngSwitchCase="'month'"
     [viewDate]="viewDate"
@@ -147,6 +147,19 @@
     (dayHeaderClicked)="clickedDate = $event.day.date"
     (eventClicked)="eventClicked($event)">
   </mwl-calendar-week-view>
+
+
+  <div *ngSwitchCase="'day'" class=" justify-content: right;
+" style="margin-bottom: 5px">
+
+    <button mat-raised-button [matMenuTriggerFor]="Actionmenu">Menu</button>
+    <mat-menu #Actionmenu="matMenu">
+      <button  mat-menu-item (click)="openBsDialog('buy')">Buy</button>
+      <button  mat-menu-item (click)="openBsDialog('sell')">Sell</button>
+    </mat-menu>
+
+  </div>
+
   <mwl-calendar-day-view
     *ngSwitchCase="'day'"
     [viewDate]="viewDate"
@@ -157,6 +170,7 @@
      >
 
   </mwl-calendar-day-view>
+
   </div>
 
   </div>

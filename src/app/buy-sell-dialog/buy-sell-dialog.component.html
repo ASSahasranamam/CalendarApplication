@@ -1,0 +1,58 @@
+<h3 mat-dialog-title > {{this.option}}</h3>
+
+<mat-dialog-content>
+
+
+  <div class="container">
+
+<tr class="example-full-width">
+  <td>
+    <mat-form-field>
+            <input matInput type="text" placeholder="Item" [formControl]='reqControl' [(ngModel)]="this.item">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error>This Field is Required</mat-error>
+
+          </mat-form-field>
+
+
+  </td>
+  <td>
+    <mat-form-field >
+  <input matInput type="number" placeholder="Quantity required" [formControl]='quantityCont' [(ngModel)]="quantity">
+  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-error>A value of atleast 1 is required.</mat-error>
+
+</mat-form-field>
+  </td>
+</tr>
+
+
+            <mat-form-field  class="example-full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    cdkAutosizeMaxRows="7"
+                    [(ngModel)]="description"
+                    ></textarea>
+        </mat-form-field>
+
+
+
+  </div>
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+ <button mat-button mat-dialog-close>Cancel</button>
+ <button mat-button    [mat-dialog-close]="true" cdkFocusInitial>Done</button>
+ <button mat-button    [mat-dialog-close]="true" cdkFocusInitial>CheckAvailability</button>
+
+</mat-dialog-actions>

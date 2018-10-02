@@ -13,6 +13,7 @@ import {MatDialog} from '@angular/material';
 import { Subject } from 'rxjs/Subject';
 
 import {DialogboxComponent} from '../dialogbox/dialogbox.component'
+import {BuySellDialogComponent} from '../buy-sell-dialog/buy-sell-dialog.component'
 import {DialogformService} from  '../dialogform.service'
 import {
   startOfMonth,
@@ -139,6 +140,29 @@ console.log(this.clickedDate)
     this.displaySelected()
   });
 }
+
+openBsDialog(option: string) {
+
+
+
+  this.dservice.setBs(option);
+  console.log(option);
+
+
+  const dialogRef = this.dialog.open(BuySellDialogComponent, {
+
+  minWidth: '50%',
+  width: '837px'
+
+});
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+    this.refresh.next()
+    this.displaySelected()
+  });
+}
+
+
 
 dashCalSwitch(): void {
   if(this.showDashboard== true){
