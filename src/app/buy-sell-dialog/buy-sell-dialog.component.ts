@@ -18,6 +18,7 @@ export class BuySellDialogComponent implements OnInit {
   item: string ='';
   quantity: number=1;
   description: string=''
+  dueDate: date;
 
   quantityCont = new FormControl("", [Validators.min(1), Validators.required])
   reqControl = new FormControl("", [Validators.required])

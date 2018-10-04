@@ -65,8 +65,8 @@ const endOfPeriod: any = {
 })
 export class CalendarComponent implements OnInit {
 
-  showDashboard: boolean  = true;
-  view: string = 'month';
+  showDashboard: boolean  = false;
+  view: string = 'day';
   eventDetails: any[] =[];
     viewDate: Date = new Date();
     message: string ='hxx';

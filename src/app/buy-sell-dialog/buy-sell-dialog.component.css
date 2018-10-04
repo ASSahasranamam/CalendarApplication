@@ -9,3 +9,8 @@ mat-dialog-content{
 table{
   max-width: 90%;
 }
+
+
+td{
+  padding-right: 15px;
+}
