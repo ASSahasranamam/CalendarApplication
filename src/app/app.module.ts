@@ -31,7 +31,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DialogboxComponent } from './dialogbox/dialogbox.component';
 import {DialogformService} from './dialogform.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CalViewerComponent } from './cal-viewer/cal-viewer.component';
 import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.component'
 
 @NgModule({
@@ -41,7 +40,6 @@ import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.compon
     CalendarComponent,
     DialogboxComponent,
     DashboardComponent,
-    CalViewerComponent,
     BuySellDialogComponent
   ],
   imports: [

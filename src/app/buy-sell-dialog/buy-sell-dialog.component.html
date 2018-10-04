@@ -16,7 +16,7 @@
 
             <mat-form-field class="example-full-width">
                     <input matInput type="text" placeholder="Item" [formControl]='reqControl' [(ngModel)]="this.item">
-                    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <button mat-button matSuffix mat-icon-button aria-label="Clear">
                       <mat-icon>close</mat-icon>
                     </button>
                     <mat-error>This Field is Required</mat-error>
@@ -27,7 +27,7 @@
     <td style="margin:10px">
       <mat-form-field class="example-full-width" >
     <input matInput type="number" placeholder="Quantity required" [formControl]='quantityCont' [(ngModel)]="quantity">
-    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+    <button mat-button  matSuffix mat-icon-button aria-label="Clear" >
       <mat-icon>close</mat-icon>
     </button>
 
