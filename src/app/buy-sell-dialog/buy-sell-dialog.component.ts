@@ -40,7 +40,7 @@ color: string ='green'
 reqMaint: boolean = true;
 warrantyReq: boolean = true;
 warrantyPer: number = 1;
-
+condMonitor: boolean = false; 
 @ViewChild("search")
 public searchElementRef: ElementRef;
 
