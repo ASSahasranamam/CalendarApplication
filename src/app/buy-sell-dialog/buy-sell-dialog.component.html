@@ -1,9 +1,9 @@
 <h3 mat-dialog-title > {{this.option}}</h3>
-
 <mat-divider></mat-divider>
+
 <mat-dialog-content>
 
-
+  <!--Input Forms-->
 
   <div class="" >
     <div class="container " style="padding:20px">
@@ -34,7 +34,7 @@
 
   </mat-form-field>
     </td>
-    <td  style="margin:20px">
+    <td  *ngIf="option == 'Buy'" style="margin:20px">
           <input
             id="dueDate"
             class="form-control"
@@ -49,10 +49,34 @@
             altFormat="F j, Y H:i"
             placeholder='Required by'>
   </td>
+
+<td *ngIf="option == 'Sell'">
+
+  <mat-form-field >
+    <input matInput  type='number' placeholder="Duration To delivery" [(ngModel)]="duration" >
+  </mat-form-field>
+
+</td>
+
+<td *ngIf="option == 'Sell'">
+
+  <mat-form-field>
+<mat-select placeholder="Click to select Unit" [(value)]="durationUnit" [(ngModel)]="durationUnit">
+<mat-option value="Minutes">Minutes</mat-option>
+<mat-option value="Hours">Hours</mat-option>
+<mat-option value="Days">Days</mat-option>
+</mat-select>
+
+</mat-form-field>
+
+
+</td>
+
+
       </tr>
 
 
-      <tr>
+      <tr *ngIf="option == 'Buy'">
         <td>     <mat-checkbox [(ngModel)]="reqMaint"> Require Maintenance?</mat-checkbox>
       </td>
 
@@ -68,6 +92,21 @@
         </td>
 
           </tr>
+
+
+<tr *ngIf="this.option == 'Sell'">
+  <td>
+
+  </td>
+
+  <td>
+
+  </td>
+
+  <td>
+
+  </td>
+</tr>
 
 
       </table>
@@ -103,33 +142,48 @@
         </mat-form-field>
       </td>
 
-
-
 </tr>
   </table>
 
-  <!-- Delivery Details/ Maps -->
 
-
-  <!-- <form class="form-inline" #form="ngForm" (ngSubmit)="setCenter($event)" ac>
-  <div class="form-group">
-    <input type="text" class="form-control" name="latitude" [(ngModel)]="latitude" placeholder="Enter latitude" required>
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" name="longitude" [(ngModel)]="longitude" placeholder="Enter longitude" required>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Go</button>
-</form> -->
-
+  <!-- Delivery Details / Maps -->
 
 <h3> Location Details</h3>
 
 <div class="form-group">
-  <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+  <input placeholder="search for location" autocorrect="off"
+   autocapitalize="off" spellcheck="off" type="text" class="form-control"
+    #search [formControl]="searchControl">
+
+
 </div>
 
+<div  class="row"*ngIf="option=='Sell'" >
+<mat-form-field class="">
+
+<input type="number" matInput placeholder=" Delivery radius" [(ngModel)]="radius" >
+
+<p matSuffix>Kilo Meters</p>
+
+</mat-form-field>
+
+<p style="margin: auto;">
+    Please move the circle in order to adjust your delivery zone
+</p>
+
+</div>
   <agm-map [latitude]="latitude" [longitude]="longitude">
     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    <agm-circle *ngIf="option== 'Sell'"
+              [latitude]="latitude"
+              [longitude]="longitude"
+              [circleDraggable]="true"
+              [editable]="true"
+              [fillColor]="color"
+              [radius]="radius * 1000">
+  </agm-circle>
+
+
   </agm-map>
 
 

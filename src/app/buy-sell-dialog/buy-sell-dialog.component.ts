@@ -31,6 +31,10 @@ public searchControl: FormControl;
 public zoom: number;
 recurOrder: boolean = false;
 minStock: number = 10;
+radius: number = 50;
+duration: number;
+durationUnit: string;
+color: string ='green'
 
 reqMaint: boolean = true;
 
