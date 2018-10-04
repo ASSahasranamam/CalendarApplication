@@ -14,6 +14,7 @@ import { CalendarModule } from 'angular-calendar';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AgmCoreModule } from '@agm/core';
 
 
 import {MatButtonToggleModule,
@@ -56,6 +57,10 @@ import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.compon
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
+    AgmCoreModule.forRoot({
+  apiKey: 'AIzaSyAWFiH_HPWDYF7d1Fqm6zGSHwmb35vcY_g'
+}),
+
 
     //AngularMaterials
     MatButtonModule,
@@ -73,6 +78,7 @@ import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.compon
     MatCardModule,
     MatMenuModule,
     MatIconModule
+
 
   ],
   entryComponents: [
