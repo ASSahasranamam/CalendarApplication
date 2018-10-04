@@ -1,6 +1,7 @@
-<h3 mat-dialog-title > {{this.option}}</h3>
-<mat-divider></mat-divider>
-
+<div class="containter">
+  <h3 mat-dialog-title > {{this.option}}</h3>
+  <mat-divider></mat-divider>
+</div>
 <mat-dialog-content>
 
   <!--Input Forms-->
@@ -8,7 +9,7 @@
   <div class="" >
     <div class="container " style="padding:20px">
 
-      <table class="example-full-width" cellspacing='0'>
+      <table class="example-full-width justify-content-center" cellspacing='0'>
         <tr>
           <td>
 
@@ -52,7 +53,7 @@
 
 <td *ngIf="option == 'Sell'">
 
-  <mat-form-field >
+  <mat-form-field  >
     <input matInput  type='number' placeholder="Duration To delivery" [(ngModel)]="duration" >
   </mat-form-field>
 
@@ -86,26 +87,40 @@
         <td *ngIf="recurOrder">
         <mat-form-field>
 
-          <input matInput type="number" placeholder="Minimum stock"  [(ngModel)]="minStock">
+          <input matInput class="example-full-width" type="number" placeholder="Minimum stock"  [(ngModel)]="minStock">
         </mat-form-field>
 
         </td>
+
 
           </tr>
 
 
 <tr *ngIf="this.option == 'Sell'">
   <td>
-
+    <!-- We reuse this for sell as well! -->
+    <mat-checkbox [(ngModel)]="reqMaint"> Maintenance offered?</mat-checkbox>
   </td>
 
   <td>
+    <mat-checkbox [(ngModel)]="warrantyReq"> Warranty offered?</mat-checkbox>
+
+  </td >
+
+  <td *ngIf="warrantyReq" [(ngModel)]="warrantyPer">
+    <mat-form-field class="example-full-width">
+
+    <input type="number" matInput placeholder= "Warranty Period" [(ngModel)]="warrantyPer" >
+
+    <p matSuffix> Years</p>
+
+    </mat-form-field>
 
   </td>
 
-  <td>
+  <td>     <mat-checkbox [(ngModel)]="condMonitor"> Condition Monitoring ?</mat-checkbox>
+</td>
 
-  </td>
 </tr>
 
 

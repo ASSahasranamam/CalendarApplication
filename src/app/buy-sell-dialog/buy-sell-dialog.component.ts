@@ -36,7 +36,10 @@ duration: number;
 durationUnit: string;
 color: string ='green'
 
+
 reqMaint: boolean = true;
+warrantyReq: boolean = true;
+warrantyPer: number = 1;
 
 @ViewChild("search")
 public searchElementRef: ElementRef;

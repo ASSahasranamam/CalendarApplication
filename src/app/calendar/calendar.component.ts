@@ -152,7 +152,7 @@ openBsDialog(option: string) {
   const dialogRef = this.dialog.open(BuySellDialogComponent, {
 
   minWidth: '50%',
-  width: '837px'
+  width: '900px'
 
 });
   dialogRef.afterClosed().subscribe(result => {
