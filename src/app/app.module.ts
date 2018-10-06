@@ -15,7 +15,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AgmCoreModule } from '@agm/core';
-import {RegistrationComponent} from './registration/registration.component'
 
 import {MatButtonToggleModule,
    MatButtonModule,MatDividerModule,
@@ -40,8 +39,7 @@ import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.compon
     CalendarComponent,
     DialogboxComponent,
     DashboardComponent,
-    BuySellDialogComponent,
-    RegistrationComponent
+    BuySellDialogComponent
   ],
   imports: [
     BrowserModule,
