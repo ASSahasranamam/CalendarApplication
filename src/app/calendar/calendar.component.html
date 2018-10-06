@@ -12,7 +12,7 @@
         <mat-divider></mat-divider>
 
 
-        <button mat-button (click)='openDialog()' class="btnz ">PlanEvent</button>
+        <button mat-button (click)='openDialog()' class="btnz ">Add Event</button>
         <mat-divider></mat-divider>
 
         <button mat-button  class="btnz ">ProjCreator</button>
@@ -157,16 +157,6 @@
   </mwl-calendar-week-view>
 
 
-  <div *ngSwitchCase="'day'" class=" justify-content: right;
-" style="margin-bottom: 5px">
-
-    <button mat-raised-button [matMenuTriggerFor]="Actionmenu">Menu</button>
-    <mat-menu #Actionmenu="matMenu">
-      <button  mat-menu-item (click)="openBsDialog('Buy')">Buy</button>
-      <button  mat-menu-item (click)="openBsDialog('Sell')">Sell</button>
-    </mat-menu>
-
-  </div>
 
   <mwl-calendar-day-view
     *ngSwitchCase="'day'"
@@ -184,7 +174,24 @@
   </div>
 </div>
   <div class="col-2 eventShowcase" *ngIf="showDashboard==false">
-    <h3> Events </h3>
+
+
+    <div class="row">
+      <h3> Events </h3>
+
+      <button mat-button style="margin:auto" [matMenuTriggerFor]="Actionmenu"><mat-icon>add</mat-icon></button>
+
+
+
+        <mat-menu #Actionmenu="matMenu">
+          <button  mat-menu-item (click)="openBsDialog('Buy')">Buy</button>
+          <button  mat-menu-item (click)="openBsDialog('Sell')">Sell</button>
+        </mat-menu>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
     <div class="" *ngFor="let item of nextEvents">
       <mat-divider></mat-divider>
 
