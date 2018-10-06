@@ -66,6 +66,7 @@ const endOfPeriod: any = {
 export class CalendarComponent implements OnInit {
 
   showDashboard: boolean  = false;
+  showProjects: boolean = false
   view: string = 'day';
   eventDetails: any[] =[];
     viewDate: Date = new Date();
@@ -167,8 +168,10 @@ openBsDialog(option: string) {
 dashCalSwitch(): void {
   if(this.showDashboard== true){
     this.showDashboard= false
+    this.showProjects = false
   } else{
     this.showDashboard = true
+    this.showProjects = false
   }
 }
 
@@ -184,5 +187,11 @@ displaySelected(): void{
 console.log(this.nextEvents);
 }
 
+displayProject(): void{
+  console.log("helo");
+  this.showDashboard = false;
+  this.showProjects =  true;
+  console.log(this.showProjects)
+}
 
 }

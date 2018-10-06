@@ -1,0 +1,252 @@
+<div>
+
+<button mat-raised-button *ngIf="showCreateProject == false" class="button" (click)='switchView()' name="button"> Create project</button>
+
+<button  mat-raised-button *ngIf="showCreateProject" type="button" name="button" (click)='switchView()'> View all projects</button>
+
+<mat-divider></mat-divider>
+
+
+<div *ngIf="showCreateProject==false" class="">
+
+<p> Showing All Projects</p>
+
+</div>
+
+<div  *ngIf="showCreateProject" class="">
+
+
+
+<h3> showing create projects</h3>
+
+<div class="container">
+  <h1 style="text-align:center">Create Project </h1>
+  <form (ngSubmit)="onSubmit()" #projForm="ngForm">
+    <!-- Row-->
+    <div class="form-row">
+      <div class="form-group col-5">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel" maxlengmat-header-cell="90">
+        <div style="color:red" [hidden]=" name.untouched || name.valid ">
+          Name is required
+        </div>
+
+      </div>
+
+      <div class="form-group col-5">
+        <label for="Description">Description</label>
+        <textarea rows="2" class="form-control" id="Description">
+        </textarea>
+      </div>
+    </div>
+
+    <!-- Row-->
+
+    <!-- Row-->
+    <div class="form-row">
+      <div class="form-group col-5">
+
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Worker</label>
+        <ng-select class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="model.worker" name="worker" #worker="ngModel">
+        </ng-select>
+
+
+
+        <div style="color:red" [hidden]=" worker.untouched || worker.valid ">
+          Choose Worker
+        </div>
+
+      </div>
+
+      <div class="form-group col-5">
+
+        <label class="mr-sm-2" for="type">Type</label>
+        <select class="custom-select mr-sm-2" id="type" [(ngModel)]="model.type" name="type" #type="ngModel">
+              <option  value="regular" >Regular</option>
+              <option value="template">Template</option>
+            </select>
+
+      </div>
+    </div>
+
+
+    <!-- Row-->
+    <div class="form-row">
+      <div class="form-group col-5">
+        <label class="mr-sm-2" for="observer">Project Observer</label>
+
+        <ng-select class="custom" id="Observer" required [items]=dropdownSearch [(ngModel)]="model.observer" name="observer" #observer="ngModel">
+        </ng-select>
+
+
+      </div>
+
+      <div class="form-group col-5">
+
+        <label class="mr-sm-2" for="risk">Risk</label>
+        <select class="custom-select mr-sm-2" id="risk" required [(ngModel)]="model.risk" name="risk" #risk="ngModel">
+                    <option value="Low">Low</option>
+                    <option  value="Medium" >Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                  </select>
+
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+      </div>
+      <div class="col form-inline" style='padding:10px;'>
+      <!-- <tr><td><label for="dt3">Project StartDate : </label></td><td><input [owlDateTime]="dt3" [owlDateTimeTrigger]="dt3" style="" [(ngModel)]='model.pstartDate' placeholder="Choose Start Date">
+      <owl-date-time #dt1></owl-date-time>
+</td></tr> -->
+      </div>
+      <div class="col" style='padding:10px;'>
+        <button (click)="addPhase()" style='margin-left:10px;' type="submit" class="btn btn-primary">Add Phase</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+
+<div style="max-width: 100%" >
+  <table class="table table-hover">
+    <thead>
+      <th *ngFor="let heading of displayedColumns"> {{heading}}</th>
+    </thead>
+
+    <tbody *ngFor="let element of localData; let i = index">
+      <tr style="background-color:#d8fffd">
+        <td>{{i + 1}}</td>
+        <td>
+          <mat-form-field style="max-height:5px;" class="example-full-width">
+            <input matInput [(ngModel)]='element.name' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
+          </mat-form-field>
+        </td>
+        <td>{{element.duration}}</td>
+        <td></td>
+        <td>{{element.worker}}</td>
+        <td>{{element.startdate}}</td>
+        <td>{{element.endDate}}</td>
+        <td>{{element.statusPercentage}}</td>
+        <td>{{element.statusPercentage}}</td>
+        <td>
+          <button style ="margin-left:3px" class="btn btn-sm btn-primary" (click)="toggle(element)">Toggle</button>
+
+          <button  style ="margin-left:3px" class="btn btn-sm btn-primary" (click)="addTask(i)">AddTask</button>
+        </td>
+      </tr>
+      <!--tr class="row">
+            <div [attr.id]="'gameDetails' + i" class=" collapse">
+              Hidden by default
+            </div>
+          </tr-->
+      <ng-container class="Hidden" [attr.id]="'gameDetails' + i" *ngIf="element.show">
+
+        <tr *ngFor="let task of element.taskData; let y = index " >
+          <td>{{i +1}}.{{y + 1}}</td>
+          <td>
+            <mat-form-field style="max-height:5px;" class="example-full-width">
+              <input matInput [(ngModel)]='task.name' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
+            </mat-form-field>
+          </td>
+          <td>
+            <span>
+            <mat-form-field  >
+              <input style ="max-width:75px" matInput [(ngModel)]='task.duration' type='number' placeholder="time" autofilled cdkTextareaAutosize>
+
+              <mat-select [(value)]="selected" style ="max-width:100px"  [(ngModel)]="task.durationType" >
+                <!-- <mat-option>None</mat-option> -->
+                <mat-option value="Minutes">Minutes</mat-option>
+                <mat-option value="Hours">Hours</mat-option>
+                <mat-option value="Days">Days</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </span>
+          </td>
+          <td>
+            <select style=" max-width:100px" class="custom-select mr-sm-2" required [(ngModel)]="task.predecessor" >
+                        <option *ngFor="let x of element.taskData;let z= index" value="z">{{i+1}}.{{z+1}}</option>
+
+            </select>
+          </td>
+          <td>
+            <ng-select class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="task.worker" >
+            </ng-select>
+          </td>
+
+          <td>
+          <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" style="width:80%" [(ngModel)]='task.startdate' placeholder="Choose startdate">
+          <owl-date-time #dt1></owl-date-time>
+
+          </td>
+          <td>
+            <input [owlDateTime]="dt" [owlDateTimeTrigger]="dt" style="width:80%" [(ngModel)]='task.endDate' placeholder="Choose endDate">
+            <owl-date-time #dt></owl-date-time>
+          </td>
+          <td>
+            <mat-form-field style="max-height:5px;" class="example-full-width">
+              <input matInput [(ngModel)]='task.statusPercentage' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field style="max-height:5px;" class="example-full-width">
+              <input matInput [(ngModel)]='task.statusText' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
+            </mat-form-field>
+          </td>
+          <td>
+            <button style="margin: 10px " mat-icon-button>
+              <mat-icon>clear</mat-icon>
+              <span>Delete</span>
+
+            </button>
+
+              <button style="margin: 10px " mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>add</mat-icon>
+                  <span>Insert Task Above</span>
+                </button>
+                <button mat-menu-item >
+                  <mat-icon>add</mat-icon>
+                  <span>Insert Task Below </span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>import_export</mat-icon>
+                  <span>Change Phase</span>
+                </button>
+              </mat-menu>
+
+          </td>
+        </tr>
+      </ng-container>
+
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-3">
+    </div>
+
+    <div class="col-3">
+      <button type="submit" class="btn btn-success">Submit</button>
+      <button style='margin-left:10px;' class="btn btn-danger">Reset</button>
+      <button style='margin-left:10px;' class="btn btn-warning">Cancel</button>
+    </div>
+    <div class="col-3" style='padding:10px;'>
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+
+
+
+</div>

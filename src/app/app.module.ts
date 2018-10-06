@@ -21,7 +21,8 @@ import {MatButtonToggleModule,
     MatExpansionModule,MatTabsModule,
   MatDialogModule, MatFormFieldModule,MatSelectModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule,
-  MatCheckboxModule, MatCardModule, MatMenuModule, MatIconModule
+  MatCheckboxModule, MatCardModule, MatMenuModule, MatIconModule,
+   MatTableModule, MatSortModule, MatPaginatorModule,
 } from '@angular/material'
 
 
@@ -30,7 +31,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DialogboxComponent } from './dialogbox/dialogbox.component';
 import {DialogformService} from './dialogform.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.component'
+import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.component';
+import { ProjectsComponent } from './projects/projects.component'
+
+import { NgSelectModule } from '@ng-select/ng-select';
+
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +47,8 @@ import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.compon
     CalendarComponent,
     DialogboxComponent,
     DashboardComponent,
-    BuySellDialogComponent
+    BuySellDialogComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +63,12 @@ import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.compon
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
+    OwlDateTimeModule,
+ OwlNativeDateTimeModule,
+ MatPaginatorModule,
+ NgSelectModule,
+ NoopAnimationsModule,
+
     AgmCoreModule.forRoot({
   apiKey: 'AIzaSyAWFiH_HPWDYF7d1Fqm6zGSHwmb35vcY_g'
 }),
@@ -74,7 +89,7 @@ import { BuySellDialogComponent } from './buy-sell-dialog/buy-sell-dialog.compon
     MatCheckboxModule,
     MatCardModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
 
 
   ],

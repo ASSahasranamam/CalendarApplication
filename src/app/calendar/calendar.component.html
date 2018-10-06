@@ -15,11 +15,11 @@
         <button mat-button (click)='openDialog()' class="btnz ">Add Event</button>
         <mat-divider></mat-divider>
 
-        <button mat-button  class="btnz ">ProjCreator</button>
-        <mat-divider></mat-divider>
+        <!-- <button mat-button  class="btnz ">ProjCreator</button>
+        <mat-divider></mat-divider> -->
 
 
-        <button mat-button  class="btnz">Projects</button>
+        <button mat-button  (click)=' displayProject()' class="btnz">Projects </button>
         <mat-divider></mat-divider>
 
 
@@ -59,7 +59,7 @@
 
 
   </div>
-<div class="col-8  viewer " *ngIf="showDashboard==false">
+<div class="col-8  viewer " *ngIf="(showDashboard==false) && (showProjects == false)">
   <div class=" "   >
     <ng-template #modalContent let-close="close">
       <div class="modal-header">
@@ -173,7 +173,7 @@
 
   </div>
 </div>
-  <div class="col-2 eventShowcase" *ngIf="showDashboard==false">
+  <div class="col-2 eventShowcase" *ngIf="(showDashboard==false) && (showProjects == false )">
 
 
     <div class="row">
@@ -214,6 +214,11 @@
   </div>
   <div class="col-10   container" *ngIf="showDashboard" style="padding: 20px;" >
     <app-dashboard></app-dashboard>
+  </div>
+
+
+  <div class="col-10   container" *ngIf="showProjects" style="padding: 20px;" >
+    <app-projects></app-projects>
   </div>
 
 </div>
