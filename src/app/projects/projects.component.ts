@@ -81,9 +81,7 @@ export class ProjectsComponent implements OnInit {
     "Predecessor",
     "Worker",
     "Start Date",
-    "End Date",
-    "Completion %",
-    "Status",
+    'Completion Status',
   "Actions"];
 
 
@@ -123,7 +121,7 @@ powers = ['Really Smart', 'Super Flexible', 'Weather Changer'];
 
 dropdownSearch =['aparna','adithya','benjamin']
 
-model = {name: '', worker:[], description: ''
+model = {name: '', worker:[], description: '',
 type: 'regular',risk:'Medium', observer:[], startDate: ''};
 
 
@@ -149,7 +147,7 @@ addTask(i){
           position: 90,
           name: '',
       duration: 1,
-      durationType:'hour',
+      durationType:'Hours',
       predecessor: [0],
       worker: [],
       startdate: '11/12/2012',

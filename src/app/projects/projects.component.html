@@ -2,9 +2,9 @@
 
 <div class= "createButton">
 
-  <button mat-raised-button *ngIf="showCreateProject == false" class="button" (click)='switchView()' name="button"> Create project</button>
+  <button mat-raised-button  color='primary' *ngIf="showCreateProject == false" class="button" (click)='switchView()' name="button"> Create project</button>
 
-  <button  mat-raised-button *ngIf="showCreateProject" type="button" name="button" (click)='switchView()'> View all projects</button>
+  <button  mat-raised-button color='primary' *ngIf="showCreateProject" type="button" name="button" (click)='switchView()'> View all projects</button>
 
   <mat-divider></mat-divider>
 
@@ -167,21 +167,34 @@
       <tr style="background-color:#d8fffd">
         <td>{{i + 1}}</td>
         <td>
-          <mat-form-field style="max-height:5px;" class="example-full-width">
-            <input matInput [(ngModel)]='element.name' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
+          <mat-form-field style="max-height:5px;max-width: 120px;" class="example-full-width">
+            <input matInput [(ngModel)]='element.name' placeholder="Phase Name" autofilled cdkTextareaAutosize>
           </mat-form-field>
         </td>
         <td>{{element.duration}}</td>
         <td></td>
         <td>{{element.worker}}</td>
         <td>{{element.startdate}}</td>
-        <td>{{element.endDate}}</td>
-        <td>{{element.statusPercentage}}</td>
         <td>{{element.statusPercentage}}</td>
         <td>
-          <button style ="margin-left:3px" class="btn btn-sm btn-primary" (click)="toggle(element)">Toggle</button>
 
-          <button  style ="margin-left:3px" class="btn btn-sm btn-primary" (click)="addTask(i)">AddTask</button>
+
+          <button style="margin: 10px " mat-icon-button [matMenuTriggerFor]="phasemenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #phasemenu="matMenu">
+            <button mat-menu-item (click)="toggle(element)">Toggle</button>
+
+            <button  mat-menu-item (click)="addTask(i)">AddTask</button>
+
+            <button  mat-menu-item>
+              <mat-icon>clear</mat-icon>
+              <span>Delete</span>
+            </button>
+
+
+          </mat-menu>
+
         </td>
       </tr>
       <!--tr class="row">
@@ -194,24 +207,26 @@
         <tr *ngFor="let task of element.taskData; let y = index " >
           <td>{{i +1}}.{{y + 1}}</td>
           <td>
-            <mat-form-field style="max-height:5px;" class="example-full-width">
-              <input matInput [(ngModel)]='task.name' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
+            <mat-form-field style="max-height:5px; max-width:120px" class="example-full-width">
+              <input matInput [(ngModel)]='task.name' placeholder="Task Name" autofilled cdkTextareaAutosize>
             </mat-form-field>
           </td>
           <td>
-            <span>
-            <mat-form-field  >
-              <input style ="max-width:75px" matInput [(ngModel)]='task.duration' type='number' placeholder="time" autofilled cdkTextareaAutosize>
+            <mat-form-field style="max-width: 120px" >
+              <span>
 
-              <mat-select [(value)]="selected" style ="max-width:100px"  [(ngModel)]="task.durationType" >
+              <input style ="max-width:35px" matInput [(ngModel)]='task.duration' type='number' placeholder="time" autofilled cdkTextareaAutosize>
+
+              <mat-select [(value)]="selected" style ="max-width:85px"  [(ngModel)]="task.durationType" >
                 <!-- <mat-option>None</mat-option> -->
                 <mat-option value="Minutes">Minutes</mat-option>
                 <mat-option value="Hours">Hours</mat-option>
                 <mat-option value="Days">Days</mat-option>
               </mat-select>
+            </span>
+
             </mat-form-field>
 
-          </span>
           </td>
           <td>
             <select style=" max-width:100px" class="custom-select mr-sm-2" required [(ngModel)]="task.predecessor" >
@@ -220,7 +235,7 @@
             </select>
           </td>
           <td>
-            <ng-select class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="task.worker" >
+            <ng-select [multiple]='true' class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="task.worker" >
             </ng-select>
           </td>
 
@@ -239,7 +254,7 @@
             placeholder='Click to enter Start Date'>
 
           </td>
-          <td>
+          <!-- <td>
 
             <input
               class="form-control"
@@ -253,26 +268,18 @@
               dateFormat="Y-m-dTH:i"
               altFormat="F j, Y H:i"
               placeholder='Click to enter Start Date'>
-            </td>
+            </td> -->
 
           <td>
-            <mat-form-field style="max-height:5px; max-width:40px" class="example-full-width">
+            <mat-form-field style="max-height:5px; max-width:60px" class="example-full-width">
               <input matInput [(ngModel)]='task.statusPercentage' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
-
+              <p matSuffix> % </p>
             </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field style="max-height:5px;" class="example-full-width">
+            <mat-form-field style="max-height:5px; max-width:90px" class="example-full-width">
               <input matInput [(ngModel)]='task.statusText' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
             </mat-form-field>
           </td>
           <td>
-            <button style="" mat-icon-button>
-              <mat-icon>clear</mat-icon>
-              <span>Delete</span>
-
-            </button>
-
               <button style="margin: 10px " mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
@@ -289,6 +296,12 @@
                   <mat-icon>import_export</mat-icon>
                   <span>Change Phase</span>
                 </button>
+                <button  mat-menu-item>
+                  <mat-icon>clear</mat-icon>
+                  <span>Delete</span>
+                </button>
+
+
               </mat-menu>
 
           </td>
@@ -297,25 +310,17 @@
 
     </tbody>
   </table>
+  <mat-divider></mat-divider>
 
-  <div class="row">
-    <div class="col-3">
-    </div>
+<div class=" align: center;float: middle;">
+  <button type="submit" class="btn btn-success">Submit</button>
+  <button style='margin-left:10px;' class="btn btn-danger">Reset</button>
+  <button style='margin-left:10px;' class="btn btn-warning">Cancel</button>
 
-    <div class="col-3">
-      <button type="submit" class="btn btn-success">Submit</button>
-      <button style='margin-left:10px;' class="btn btn-danger">Reset</button>
-      <button style='margin-left:10px;' class="btn btn-warning">Cancel</button>
-    </div>
-    <div class="col-3" style='padding:10px;'>
-    </div>
+</div>
 
   </div>
 </div>
-
-
-</div>
-
 
 
 </div>
