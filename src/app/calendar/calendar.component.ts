@@ -97,6 +97,7 @@ export class CalendarComponent implements OnInit {
 
     this.dservice.infoEventsHolder.subscribe(infoEventsx => {
     this.eventDetails = infoEventsx;
+    console.log(infoEventsx);
     this.refresh.next()
     this.displaySelected()
 
@@ -181,6 +182,7 @@ displaySelected(): void{
   console.log("hello")
   for(var i of this.eventDetails){
     if(moment(i.start).isAfter(moment())){
+      console.log(i.start)
       this.nextEvents.push(i)
     }
   }

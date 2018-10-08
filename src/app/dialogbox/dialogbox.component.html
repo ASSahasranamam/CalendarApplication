@@ -277,6 +277,6 @@
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button *ngIf="showScheduler == false" (click) ='sendMessage()'  [mat-dialog-close]="true" cdkFocusInitial>Done</button>
-  <button mat-button *ngIf="showScheduler == true" (click) ='scheduleEvent()'  [mat-dialog-close]="true" cdkFocusInitial>CheckAvailability</button>
+  <button mat-button *ngIf="showScheduler == true" (click) ='scheduleEvent()'  [mat-dialog-close]="true" cdkFocusInitial>Schedule Event</button>
 
 </mat-dialog-actions>

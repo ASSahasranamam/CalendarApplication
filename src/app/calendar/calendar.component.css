@@ -82,3 +82,24 @@ pre {
 .example-card {
   max-width: 400px;
 }
+
+.dotRed {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dotBlue {
+    height: 10px;
+    width: 10px;
+    background-color: blue;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dotGreen {
+
+
+}

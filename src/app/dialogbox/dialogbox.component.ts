@@ -63,7 +63,7 @@ export class DialogboxComponent implements OnInit {
   selectedItems = [];
   dropdownSettings = {};
 
-  timeSetting: string ="Duration";
+  timeSetting: string ="Appointment";
   recurrence: boolean = false;
   recurrenceFreq: string = "Week"
   recurrenceWeek: string[]=[]
@@ -204,7 +204,7 @@ export class DialogboxComponent implements OnInit {
       start: startOfDay(this.datex),
       end: endOfDay(this.datex),
 
-    //  color: 'red',
+      color: colors.red,
       draggable: true,
       resizable: {
         beforeStart: true,

@@ -86,23 +86,28 @@ addEvent(res: CalendarEvent){
 
 }
 
-
+//USE THIS AS TEMPLATE AND FUNCTION ISNTEAD OF AddEvent
 schedEvent( res: any){
+  console.log(res.start)
   this.sample = {
 
     title: res.title,
     start: res.start,
     end: res.end,
-    //color: 'red',
+    color: res.color,
     draggable: true,
     resizable: {
       beforeStart: true,
       afterEnd: true
     }
+
   }
+
+  console.log(this.infoEventsx)
 
   this.events.push(this.sample)
   this.infoEventsx.push(res)
+  console.log(this.infoEventsx);
 }
 
 getString(): string{
