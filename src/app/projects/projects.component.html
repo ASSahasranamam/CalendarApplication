@@ -69,7 +69,7 @@
     <div class="form-row">
       <div class="form-group col-5">
 
-        <ng-select  placeholder='Choose Workers' class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="model.worker" name="worker" #worker="ngModel">
+        <ng-select [multiple]='true' placeholder='Choose Workers' class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="model.worker" name="worker" #worker="ngModel">
         </ng-select>
 
 
@@ -105,7 +105,7 @@
     <div class="form-row">
       <div class="form-group col-5">
 
-        <ng-select placeholder='Choose Observers' class="custom" id="Observer" required [items]=dropdownSearch [(ngModel)]="model.observer" name="observer" #observer="ngModel">
+        <ng-select [multiple]='true' placeholder='Choose Observers' class="custom" id="Observer" required [items]=dropdownSearch [(ngModel)]="model.observer" name="observer" #observer="ngModel">
         </ng-select>
         <div style="color:red" [hidden]=" worker.untouched || worker.valid ">
           Choose Worker
