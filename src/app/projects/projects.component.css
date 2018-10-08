@@ -1,0 +1,14 @@
+.createButton{
+  float: right;
+  padding: 20px;
+}
+
+
+table{
+  max-width: 100%;
+}
+
+
+td{
+  border: 1px solid #000;
+}

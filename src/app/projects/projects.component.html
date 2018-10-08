@@ -1,11 +1,14 @@
 <div>
 
-<button mat-raised-button *ngIf="showCreateProject == false" class="button" (click)='switchView()' name="button"> Create project</button>
+<div class= "createButton">
 
-<button  mat-raised-button *ngIf="showCreateProject" type="button" name="button" (click)='switchView()'> View all projects</button>
+  <button mat-raised-button *ngIf="showCreateProject == false" class="button" (click)='switchView()' name="button"> Create project</button>
 
-<mat-divider></mat-divider>
+  <button  mat-raised-button *ngIf="showCreateProject" type="button" name="button" (click)='switchView()'> View all projects</button>
 
+  <mat-divider></mat-divider>
+
+</div>
 
 <div *ngIf="showCreateProject==false" class="">
 
@@ -18,6 +21,18 @@
 
 
 <h3> showing create projects</h3>
+
+<input class="form-control"
+             type="text"
+             mwlFlatpickr
+             [(ngModel)]="rangeValue"
+             [altInput]="true"
+             [convertModelValue]="true"
+             mode="range"
+             [enableTime]="true">
+
+{{rangeValue.from}}
+{{rangeValue.to}}
 
 <div class="container">
   <h1 style="text-align:center">Create Project </h1>
@@ -179,17 +194,40 @@
           </td>
 
           <td>
-          <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" style="width:80%" [(ngModel)]='task.startdate' placeholder="Choose startdate">
-          <owl-date-time #dt1></owl-date-time>
+
+          <input  class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="task.startdate"
+            (ngModelChange)="refresh.next()"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder='Click to enter Start Date'>
 
           </td>
           <td>
-            <input [owlDateTime]="dt" [owlDateTimeTrigger]="dt" style="width:80%" [(ngModel)]='task.endDate' placeholder="Choose endDate">
-            <owl-date-time #dt></owl-date-time>
-          </td>
+
+            <input
+              class="form-control"
+              type="text"
+              mwlFlatpickr
+              [(ngModel)]="task.endDate"
+              (ngModelChange)="refresh.next()"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder='Click to enter Start Date'>
+            </td>
+
           <td>
-            <mat-form-field style="max-height:5px;" class="example-full-width">
+            <mat-form-field style="max-height:5px; max-width:40px" class="example-full-width">
               <input matInput [(ngModel)]='task.statusPercentage' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
+
             </mat-form-field>
           </td>
           <td>
@@ -198,7 +236,7 @@
             </mat-form-field>
           </td>
           <td>
-            <button style="margin: 10px " mat-icon-button>
+            <button style="" mat-icon-button>
               <mat-icon>clear</mat-icon>
               <span>Delete</span>
 

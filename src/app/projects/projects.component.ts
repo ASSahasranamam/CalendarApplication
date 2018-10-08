@@ -90,6 +90,10 @@ export class ProjectsComponent implements OnInit {
 localData = []
 // dataSource = new MatTableDataSource(this.localData);
 
+rangeValue: { from: Date; to: Date } = {
+  from: new Date(),
+  to: (new Date() as any)['fp_incr'](10)
+};
 
 
 
