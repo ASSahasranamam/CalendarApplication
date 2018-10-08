@@ -123,7 +123,7 @@ powers = ['Really Smart', 'Super Flexible', 'Weather Changer'];
 
 dropdownSearch =['aparna','adithya','benjamin']
 
-model = {name: '', worker:[],
+model = {name: '', worker:[], description: ''
 type: 'regular',risk:'Medium', observer:[], startDate: ''};
 
 

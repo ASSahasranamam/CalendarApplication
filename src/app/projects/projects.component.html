@@ -18,7 +18,7 @@
 
 <div  *ngIf="showCreateProject" class="">
 
-
+<!--
 
 <h3> showing create projects</h3>
 
@@ -32,26 +32,34 @@
              [enableTime]="true">
 
 {{rangeValue.from}}
-{{rangeValue.to}}
+{{rangeValue.to}} -->
 
 <div class="container">
   <h1 style="text-align:center">Create Project </h1>
   <form (ngSubmit)="onSubmit()" #projForm="ngForm">
     <!-- Row-->
     <div class="form-row">
-      <div class="form-group col-5">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel" maxlengmat-header-cell="90">
+      <div class=" col-5" style="min-width:75%">
+        <!-- <label for="name">Name</label> -->
+
+
+        <mat-form-field style="width:100%">
+          <input type="text"  placeholder="Enter Project Name" matInput required [(ngModel)]="model.name" name="name" #name="ngModel" >
+        </mat-form-field>
+
         <div style="color:red" [hidden]=" name.untouched || name.valid ">
           Name is required
         </div>
 
       </div>
 
-      <div class="form-group col-5">
-        <label for="Description">Description</label>
-        <textarea rows="2" class="form-control" id="Description">
+      <div class="form-group col-5" style="min-width: 100%">
+        <!-- <label for="Description">Description</label> -->
+        <mat-form-field style="width:100%">
+        <textarea  [(ngModel)]="model.description " placeholder="Description" matInput rows="2"  name="description" id="Description">
         </textarea>
+      </mat-form-field>
+
       </div>
     </div>
 
@@ -74,11 +82,20 @@
 
       <div class="form-group col-5">
 
-        <label class="mr-sm-2" for="type">Type</label>
+
+        <mat-form-field style="width:100%">
+          <mat-select placeholder='Project Type' name='type' [(ngModel)]="model.type">
+            <mat-option value="regular" >Regular</mat-option>
+            <mat-option value="AdHoc">Ad Hoc</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!-- <label class="mr-sm-2" for="type">Type</label>
         <select class="custom-select mr-sm-2" id="type" [(ngModel)]="model.type" name="type" #type="ngModel">
               <option  value="regular" >Regular</option>
               <option value="template">Template</option>
-            </select>
+            </select> -->
 
       </div>
     </div>
@@ -99,13 +116,26 @@
 
       <div class="form-group col-5">
 
-        <label class="mr-sm-2" for="risk">Risk</label>
-        <select class="custom-select mr-sm-2" id="risk" required [(ngModel)]="model.risk" name="risk" #risk="ngModel">
+        <!-- <label class="mr-sm-2" for="risk">Risk</label>
+        <select class="custom-select mr-sm-2" id="risk" required  name="risk" #risk="ngModel">
                     <option value="Low">Low</option>
                     <option  value="Medium" >Medium</option>
                     <option value="High">High</option>
                     <option value="Critical">Critical</option>
-                  </select>
+                  </select> -->
+
+
+                  <mat-form-field style="width:100%">
+                    <mat-select placeholder='Project Type'[(ngModel)]="model.risk" name='risk'>
+                      <mat-option value="Low">Low</mat-option>
+                      <mat-option value="AdHoc">Medium</mat-option>
+                      <mat-option value="High">High</mat-option>
+                      <mat-option value="Critical">Critical</mat-option>
+
+                    </mat-select>
+                  </mat-form-field>
+
+
 
       </div>
     </div>
