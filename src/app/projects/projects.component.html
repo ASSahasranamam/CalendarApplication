@@ -249,9 +249,9 @@
             [altInput]="true"
             [convertModelValue]="true"
             [enableTime]="true"
-            dateFormat="Y-m-dTH:i"
+            dateFormat="Y-MM-dTH:i"
             altFormat="F j, Y H:i"
-            placeholder='Click to enter Start Date'>
+            placeholder='Start Date'>
 
           </td>
           <!-- <td>
@@ -271,11 +271,9 @@
             </td> -->
 
           <td>
-            <mat-form-field style="max-height:5px; max-width:60px" class="example-full-width">
-              <input matInput [(ngModel)]='task.statusPercentage' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
-              <p matSuffix> % </p>
-            </mat-form-field>
-            <mat-form-field style="max-height:5px; max-width:90px" class="example-full-width">
+            <mat-form-field style="max-height:5px; max-width:130px" class="example-full-width">
+              <!-- <input matInput [(ngModel)]='task.statusPercentage' placeholder="Click to Enter" autofilled cdkTextareaAutosize> -->
+              <!-- <p matSuffix> % </p> -->
               <input matInput [(ngModel)]='task.statusText' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
             </mat-form-field>
           </td>

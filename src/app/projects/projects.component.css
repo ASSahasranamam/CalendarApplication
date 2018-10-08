@@ -9,6 +9,7 @@ table{
 }
 
 
-/* td{
-    border: 1px solid #000;
-} */
+td{
+
+padding: 0.5rem;
+}
