@@ -61,8 +61,7 @@
     <div class="form-row">
       <div class="form-group col-5">
 
-        <label class="mr-sm-2" for="inlineFormCustomSelect">Worker</label>
-        <ng-select class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="model.worker" name="worker" #worker="ngModel">
+        <ng-select  placeholder='Choose Workers' class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="model.worker" name="worker" #worker="ngModel">
         </ng-select>
 
 
@@ -88,10 +87,12 @@
     <!-- Row-->
     <div class="form-row">
       <div class="form-group col-5">
-        <label class="mr-sm-2" for="observer">Project Observer</label>
 
-        <ng-select class="custom" id="Observer" required [items]=dropdownSearch [(ngModel)]="model.observer" name="observer" #observer="ngModel">
+        <ng-select placeholder='Choose Observers' class="custom" id="Observer" required [items]=dropdownSearch [(ngModel)]="model.observer" name="observer" #observer="ngModel">
         </ng-select>
+        <div style="color:red" [hidden]=" worker.untouched || worker.valid ">
+          Choose Worker
+        </div>
 
 
       </div>

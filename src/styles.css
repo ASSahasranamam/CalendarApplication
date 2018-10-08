@@ -4,6 +4,9 @@
 
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+
 body {
   max-height : 100vh;
   overflow: auto;

@@ -167,16 +167,18 @@
         </td>
 
         <td *ngIf="jsonEvent.reminderNeeded" style= "padding:10px">
-
-          <mat-checkbox style="float: left; padding:5px" [(ngModel)]="jsonEvent.reminderFreqNeeded">Set Frequent Reminder </mat-checkbox>
-        </td>
-
-        <td *ngIf="jsonEvent.reminderNeeded" style= "padding:10px">
           <mat-form-field >
             <input matInput  type='text' placeholder="Reminder Quote" [(ngModel)]="jsonEvent.reminderQuote" >
           </mat-form-field>
 
       </td>
+
+
+        <td *ngIf="jsonEvent.reminderNeeded" style= "padding:10px">
+
+            <mat-checkbox style="float: left; padding:5px" [(ngModel)]="jsonEvent.reminderFreqNeeded">Set Frequent Reminder </mat-checkbox>
+        </td>
+
 
       </tr>
 
@@ -204,6 +206,11 @@
 
 
 
+
+        <td style= "margin:20px">
+          <button  mat-stroked-button style=" margin:10px; padding:5px;"> Attach Reminder ringtone<mat-icon>add</mat-icon></button>
+        </td>
+
         <td  style="margin:10px;">
 
 
@@ -222,10 +229,6 @@
             </mat-form-field>
 
 
-        </td>
-
-        <td style= "margin:10px">
-          <button  mat-stroked-button > Attach Reminder ringtone<mat-icon>add</mat-icon></button>
         </td>
 
 

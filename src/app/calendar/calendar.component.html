@@ -212,13 +212,26 @@
     <div class="row">
       <h3> Events </h3>
 
-      <button mat-button style="margin:auto" [matMenuTriggerFor]="Actionmenu"><mat-icon>add</mat-icon></button>
+      <button style="floar:right;" mat-icon-button [matMenuTriggerFor]="Actionmenu"><mat-icon >add</mat-icon></button>
 
 
 
         <mat-menu #Actionmenu="matMenu">
+          <button mat-menu-item (click)='openDialog()' >Task</button>
+          <mat-divider></mat-divider>
+
+          <button mat-menu-item  > Change Request </button>
+          <mat-divider></mat-divider>
+
+          <button mat-menu-item  >Issue</button>
+          <mat-divider></mat-divider>
           <button  mat-menu-item (click)="openBsDialog('Buy')">Buy</button>
+          <mat-divider></mat-divider>
+
           <button  mat-menu-item (click)="openBsDialog('Sell')">Sell</button>
+          <mat-divider></mat-divider>
+
+
         </mat-menu>
 
     </div>
@@ -245,6 +258,9 @@
               <button mat-menu-item >
                 Cancel
               </button>
+
+
+
               <!-- <button mat-menu-item>
                 <mat-icon>import_export</mat-icon>
                 <span>Change Phase</span>

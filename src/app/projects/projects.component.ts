@@ -123,8 +123,8 @@ powers = ['Really Smart', 'Super Flexible', 'Weather Changer'];
 
 dropdownSearch =['aparna','adithya','benjamin']
 
-model = {name: '', worker: '',
-type: 'regular',risk:'Medium',observer:'',startDate: ''};
+model = {name: '', worker:[],
+type: 'regular',risk:'Medium', observer:[], startDate: ''};
 
 
 addPhase(){
@@ -151,7 +151,7 @@ addTask(i){
       duration: 1,
       durationType:'hour',
       predecessor: [0],
-      worker: '',
+      worker: [],
       startdate: '11/12/2012',
       endDate: '12/12/2012',
       statusPercentage: 0,
