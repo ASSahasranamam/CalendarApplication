@@ -6,8 +6,8 @@
     <mat-form-field>
     <mat-select placeholder="TimeSettings" *ngIf="showScheduler == true" [(ngModel)]="timeSetting">
     <!-- <mat-option value="Duration">duration basedAppt</mat-option> -->
-    <mat-option value="Appointment">Appointment</mat-option>
-    <mat-option value="Task">Task</mat-option>
+    <mat-option value="Appointment">Task</mat-option>
+    <!-- <mat-option value="Task">Task</mat-option> -->
     <mat-option value="Event">Event</mat-option>
 
     </mat-select>
@@ -69,28 +69,33 @@
   <div class="container-fluid " style="padding:20px">
 
     <table class="example-full-width" cellspacing='0'>
-      <tr>
+      <tr style="padding:30px">
         <td>
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Title" value=" Event on {{clickedDate}}">
           </mat-form-field>
 
   </td>
-  <td *ngIf="timeSetting == 'Appointment'   " style="margin:10px">
 
-        <input
-          class="form-control"
-          type="text"
-          mwlFlatpickr
-          [(ngModel)]="jsonEvent.start"
-          (ngModelChange)="refresh.next()"
-          [altInput]="true"
-          [convertModelValue]="true"
-          [enableTime]="true"
-          dateFormat="Y-m-dTH:i"
-          altFormat="F j, Y H:i"
-          placeholder='Click to enter Start Date'>
+  <td *ngIf="timeSetting == 'Appointment'   " style="padding: 10px">
+<div class="form-group">
+  <label for="startdate">Click to edit StartDate</label>
+  <input
+    class="form-control"
+    id="startdate"
+    type="text"
+    mwlFlatpickr
+    [(ngModel)]="jsonEvent.start"
+    (ngModelChange)="refresh.next()"
+    [altInput]="true"
+    [convertModelValue]="true"
+    [enableTime]="true"
+    dateFormat="Y-m-dTH:i"
+    altFormat="F j, Y H:i"
+    placeholder='Click to enter Start Date'>
+</div>
 </td>
+
 <td *ngIf="timeSetting == 'Duration'">
 
         <mat-form-field >
@@ -110,19 +115,22 @@
 </td>
 
 <td *ngIf="timeSetting == 'Appointment' || timeSetting == 'Task' " style="padding:10px">
-  <input
-    class="form-control"
-    type="text"
-    mwlFlatpickr
-    [(ngModel)]="jsonEvent.end"
-    (ngModelChange)="refresh.next()"
-    [altInput]="true"
-    [convertModelValue]="true"
-    [enableTime]="true"
-    dateFormat="Y-m-dTH:i"
-    altFormat="F j, Y H:i"
-    placeholder="Click to edit EndTime">
-
+  <div class="form-group">
+    <label for="enddate">Click to edit StartDate</label>
+    <input
+      class="form-control"
+      id="enddate"
+      type="text"
+      mwlFlatpickr
+      [(ngModel)]="jsonEvent.start"
+      (ngModelChange)="refresh.next()"
+      [altInput]="true"
+      [convertModelValue]="true"
+      [enableTime]="true"
+      dateFormat="Y-m-dTH:i"
+      altFormat="F j, Y H:i"
+      placeholder='Click to enter Start Date'>
+  </div>
 </td>
 
 <td *ngIf="timeSetting == 'Duration'">

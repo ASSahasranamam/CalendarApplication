@@ -83,7 +83,7 @@ export class DialogboxComponent implements OnInit {
   jsonEvent = {
       title: this.eventTitle,
       dateEvent: this.datex,
-      start: startOfDay(this.datex),
+      start: moment().toDate(),
       end: endOfDay(this.datex),
 
     //  color: 'red',

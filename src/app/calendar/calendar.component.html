@@ -15,6 +15,39 @@
         <button mat-button (click)='openDialog()' class="btnz ">Add Event</button>
         <mat-divider></mat-divider>
 
+
+
+                <mat-expansion-panel class="btn2">
+             <mat-expansion-panel-header>
+               <mat-panel-title style="
+               color:white; text-align:left;   margin-left: 0px">
+                 Add Events 2.0
+               </mat-panel-title>
+             </mat-expansion-panel-header>
+             <mat-divider></mat-divider>
+             <button mat-button (click)='openDialog()' class="btnz ">Task</button>
+             <mat-divider></mat-divider>
+
+             <button mat-button (click)='openBsDialog("Buy")' class="btnz "> Change Request </button>
+             <mat-divider></mat-divider>
+
+             <button mat-button (click)='openBsDialog("Buy")' class="btnz ">Issue</button>
+             <mat-divider></mat-divider>
+
+             <button mat-button (click)='openBsDialog("Buy")' class="btnz ">Buy</button>
+             <mat-divider></mat-divider>
+
+             <button mat-button (click)='openBsDialog("Sell")' class="btnz ">Sell</button>
+             <mat-divider></mat-divider>
+
+
+            </mat-expansion-panel>
+
+            <mat-divider></mat-divider>
+
+
+
+
         <!-- <button mat-button  class="btnz ">ProjCreator</button>
         <mat-divider></mat-divider> -->
 
@@ -197,7 +230,34 @@
 
       <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title>{{item.title}} <span class='dotBlue'></span> </mat-card-title>
+        <mat-card-title ><div class="">
+          {{item.title}}
+
+          <div class="" style="float:right">
+            <span  class='dotBlue'></span>
+            <button  mat-icon-button [matMenuTriggerFor]="eventMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #eventMenu="matMenu">
+              <button mat-menu-item>
+                Reschedule
+              </button>
+              <button mat-menu-item >
+                Cancel
+              </button>
+              <!-- <button mat-menu-item>
+                <mat-icon>import_export</mat-icon>
+                <span>Change Phase</span>
+              </button> -->
+            </mat-menu>
+
+          </div>
+
+        </div>
+
+
+
+        </mat-card-title>
         <mat-card-subtitle>{{item.start | date:'MMM dd h:mm ' }} to {{item.end | date:'MMM dd h:mm '}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
