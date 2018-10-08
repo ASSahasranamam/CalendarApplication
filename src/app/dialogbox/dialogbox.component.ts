@@ -83,9 +83,13 @@ export class DialogboxComponent implements OnInit {
   jsonEvent = {
       title: this.eventTitle,
       dateEvent: this.datex,
-      start: moment().toDate(),
-      end: endOfDay(this.datex),
-
+      start: moment().add(2,'m').toDate(),
+      end: new Date().setHours(23,59,59,999),
+      reminderNeeded: false,
+      reminderFreqNeeded: false,
+      reminderFreq: 1,
+      reminderFreqDuration: 'Hours',
+      reminderQuote: '',
     //  color: 'red',
       draggable: true,
       resizable: {
@@ -182,7 +186,7 @@ export class DialogboxComponent implements OnInit {
       }
         for(let i of holder){
           this.jsonEvent.start = moment(i).add({hours: moment(this.jsonEvent.duration).hours(), minutes: moment(this.jsonEvent.duration).minutes() }).toDate()
-          this.jsonEvent.end = moment(i).add({hours: moment(this.jsonEvent.duration).hours(), minutes: moment(this.jsonEvent.duration).minutes() }).toDate()
+          // this.jsonEvent.end = moment(this.jsonEvent.start).endOf('day').toDate()
           this.dservice.schedEvent(this.jsonEvent)
           this.refresh.next()
 

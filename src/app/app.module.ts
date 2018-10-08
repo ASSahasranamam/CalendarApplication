@@ -64,10 +64,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     CalendarModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
     OwlDateTimeModule,
- OwlNativeDateTimeModule,
- MatPaginatorModule,
- NgSelectModule,
- NoopAnimationsModule,
+    MatPaginatorModule,
+    NgSelectModule,
 
     AgmCoreModule.forRoot({
   apiKey: 'AIzaSyAWFiH_HPWDYF7d1Fqm6zGSHwmb35vcY_g'

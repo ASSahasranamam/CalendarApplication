@@ -1,10 +1,12 @@
 <h3 mat-dialog-title *ngIf="dateNull == false"> Schedule Event on - {{this.datex | date:'fullDate' }} </h3>
-<h3 mat-dialog-title *ngIf="dateNull == true"> PlanEvent</h3>
+<h3 mat-dialog-title *ngIf="dateNull == true"> Add Event</h3>
+<mat-divider></mat-divider>
 
 <mat-dialog-content class="mat-typography">
+  <br>
   <div class="container ">
     <mat-form-field>
-    <mat-select placeholder="TimeSettings" *ngIf="showScheduler == true" [(ngModel)]="timeSetting">
+    <mat-select placeholder="Event Category" *ngIf="showScheduler == true" [(ngModel)]="timeSetting">
     <!-- <mat-option value="Duration">duration basedAppt</mat-option> -->
     <mat-option value="Appointment">Task</mat-option>
     <!-- <mat-option value="Task">Task</mat-option> -->
@@ -72,14 +74,14 @@
       <tr style="padding:30px">
         <td>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Title" value=" Event on {{clickedDate}}">
+            <input matInput placeholder="Enter Task Name" value="">
           </mat-form-field>
 
   </td>
 
   <td *ngIf="timeSetting == 'Appointment'   " style="padding: 10px">
 <div class="form-group">
-  <label for="startdate">Click to edit StartDate</label>
+  <label for="startdate">Click to edit Start date</label>
   <input
     class="form-control"
     id="startdate"
@@ -96,16 +98,8 @@
 </div>
 </td>
 
-<td *ngIf="timeSetting == 'Duration'">
 
-        <mat-form-field >
-          <input matInput [matDatepicker]="picker1" placeholder="Date" [(ngModel)]="jsonEvent.start">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
-</td>
-
-      <td style='width:20%' *ngIf="timeSetting == 'Duration' || timeSetting == 'Event'" >
+    <td style='width:20%' *ngIf="timeSetting == 'Duration' || timeSetting == 'Event'" >
 
 
 
@@ -116,26 +110,26 @@
 
 <td *ngIf="timeSetting == 'Appointment' || timeSetting == 'Task' " style="padding:10px">
   <div class="form-group">
-    <label for="enddate">Click to edit StartDate</label>
+    <label for="enddate">Click to edit End Date</label>
     <input
       class="form-control"
       id="enddate"
       type="text"
       mwlFlatpickr
-      [(ngModel)]="jsonEvent.start"
+      [(ngModel)]="jsonEvent.end"
       (ngModelChange)="refresh.next()"
       [altInput]="true"
       [convertModelValue]="true"
       [enableTime]="true"
       dateFormat="Y-m-dTH:i"
       altFormat="F j, Y H:i"
-      placeholder='Click to enter Start Date'>
+      placeholder='Click to enter End Date'>
   </div>
 </td>
 
 <td *ngIf="timeSetting == 'Duration'">
         <mat-form-field>
-    <mat-select placeholder="Click to Edit" [(value)]="jsonEvent.durationUnit" [(ngModel)]="jsonEvent.durationUnit">
+    <mat-select placeholder="Click to Edit"  placeholder='Units' [(value)]="jsonEvent.durationUnit" [(ngModel)]="jsonEvent.durationUnit">
       <mat-option value="Minutes">Minutes</mat-option>
       <mat-option value="Hours">Hours</mat-option>
       <mat-option value="FullDay">FullDay</mat-option>
@@ -145,34 +139,111 @@
 
 </td>
     </tr>
+</table>
 
-    </table>
-
-    <mat-form-field class="example-full-width">
-  <mat-label>Description</mat-label>
-  <textarea matInput
-            cdkTextareaAutosize
-            #autosize="cdkTextareaAutosize"
-            cdkAutosizeMinRows="2"
-            cdkAutosizeMaxRows="7"
-            [(ngModel)]="jsonEvent.description"
-            ></textarea>
+<mat-form-field class="example-full-width">
+<mat-label>Description</mat-label>
+<textarea matInput
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="4"
+        cdkAutosizeMaxRows="7"
+        [(ngModel)]="jsonEvent.description"
+        ></textarea>
 </mat-form-field>
 
+
+
 <table>
+
+
+    <tr style="padding:30px">
+
+        <td style="padding:10px;">
+          <mat-checkbox style="margin-left:10px; float: left; padding:5px" [(ngModel)]="jsonEvent.reminderNeeded">Set Reminder</mat-checkbox>
+
+
+
+        </td>
+
+        <td *ngIf="jsonEvent.reminderNeeded" style= "padding:10px">
+
+          <mat-checkbox style="float: left; padding:5px" [(ngModel)]="jsonEvent.reminderFreqNeeded">Set Frequent Reminder </mat-checkbox>
+        </td>
+
+        <td *ngIf="jsonEvent.reminderNeeded" style= "padding:10px">
+          <mat-form-field >
+            <input matInput  type='text' placeholder="Reminder Quote" [(ngModel)]="jsonEvent.reminderQuote" >
+          </mat-form-field>
+
+      </td>
+
+      </tr>
+
+       <tr style=" padding:30px" *ngIf="jsonEvent.reminderNeeded">
+
+        <td  style="margin:10px;">
+          <div class="form-group">
+            <label for="enddate">Click to set reminder Date</label>
+            <input
+              class="form-control"
+              id="enddate"
+              type="text"
+              mwlFlatpickr
+              [(ngModel)]="jsonEvent.end"
+              (ngModelChange)="refresh.next()"
+              [altInput]="true"
+              [convertModelValue]="true"
+              [enableTime]="true"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder='Click to enter End Date'>
+          </div>
+
+        </td>
+
+
+
+        <td  style="margin:10px;">
+
+
+            <mat-form-field style="padding : 20px;"  *ngIf="jsonEvent.reminderFreqNeeded "  >
+              <span>
+              <input style ="max-width:100px" matInput [(ngModel)]='jsonEvent.reminderFreq' type='number' placeholder="time" >
+
+              <mat-select [(value)]="selected" style ="max-width:100px"  [(ngModel)]="jsonEvent.reminderFreqDuration" >
+                <mat-option>None</mat-option>
+                 <mat-option value="Minutes">Minutes</mat-option>
+                <mat-option value="Hours">Hours</mat-option>
+                <mat-option value="Days">Days</mat-option>
+               </mat-select>
+             </span>
+
+            </mat-form-field>
+
+
+        </td>
+
+        <td style= "margin:10px">
+          <button  mat-stroked-button > Attach Reminder ringtone<mat-icon>add</mat-icon></button>
+        </td>
+
+
+      </tr>
+
   <tr>
-    <td><mat-form-field>
-  <mat-select placeholder="Prioity" [(value)]="jsonEvent.priority" [(ngModel)]="jsonEvent.priority">
-    <mat-option value="High">High</mat-option>
-    <mat-option value="Normal">Normal</mat-option>
-    <mat-option value="Low">Low</mat-option>
-  </mat-select>
-</mat-form-field></td>
+    <td>
+      <mat-form-field>
+        <mat-select placeholder="Prioity" [(value)]="jsonEvent.priority" [(ngModel)]="jsonEvent.priority">
+          <mat-option value="High">High</mat-option>
+          <mat-option value="Normal">Normal</mat-option>
+          <mat-option value="Low">Low</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
 
     <td>
-<label for="#buddies"> Select Associates:  </label>
-    </td>
-      <td>
+      <label for="buddies"> Select Associates:  </label>
         <ng-multiselect-dropdown style="min-width: 300px"
         id="buddies"
       [placeholder]="'custom placeholder'"
@@ -191,17 +262,14 @@
   </tr>
 
   <tr>
-    <td>
-      <button mat-button class="btn" name="button"> Attach Documents</button>
+    <td >
+      <button mat-raised-button name="button"> Attach Documents</button>
     </td>
   </tr>
 </table>
 
-    <!-- <div class="btn-group float-center">
-      <button class="btn" name="button">Cancel</button>
-      <button class="btn" name="button">CheckAvailability</button>
 
-    </div> -->
+
   </div>
 
 </div>
@@ -282,9 +350,10 @@
 </div>
 
  </mat-dialog-content>
+ <mat-divider></mat-divider>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button *ngIf="showScheduler == false" (click) ='sendMessage()'  [mat-dialog-close]="true" cdkFocusInitial>Done</button>
-  <button mat-button *ngIf="showScheduler == true" (click) ='scheduleEvent()'  [mat-dialog-close]="true" cdkFocusInitial>Schedule Event</button>
+  <button mat-raised-button color='warn' mat-dialog-close>Cancel</button>
+  <button mat-raised-button *ngIf="showScheduler == false" (click) ='sendMessage()'  [mat-dialog-close]="true" cdkFocusInitial>Done</button>
+  <button mat-raised-button color='primary' *ngIf="showScheduler == true" (click) ='scheduleEvent()'  [mat-dialog-close]="true" cdkFocusInitial>Schedule Event</button>
 
 </mat-dialog-actions>
