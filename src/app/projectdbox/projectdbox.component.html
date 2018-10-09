@@ -10,7 +10,61 @@
 
 <table>
 
+<tr>
 
+<td>
+  <mat-checkbox style="margin-left:10px; padding:5px" [(ngModel)]="recurrence">Recuring Event </mat-checkbox>
+
+</td>
+
+<td>
+  <mat-form-field *ngIf="recurrence == true" style="padding:5px">
+  <mat-select placeholder="RecurringEvery"  [(ngModel)]="recurrenceFreq">
+  <mat-option value="Month">Monthly</mat-option>
+  <mat-option value="Week">Weekly</mat-option>
+  <mat-option value="Daily">Everyday</mat-option>
+  </mat-select>
+
+  </mat-form-field>
+
+</td>
+
+
+<td>
+  <mat-form-field *ngIf=" recurrence == true && recurrenceFreq == 'Week'"  style="padding:5px">
+  <mat-select placeholder="RecurringEvery" [(ngModel)]="recurrenceWeek" multiple>
+  <mat-option value="Monday">Monday</mat-option>
+  <mat-option value="Tuesday">Tuesday</mat-option>
+  <mat-option value="Wednesday">Wednesday</mat-option>
+  <mat-option value="Thursday">Thursday</mat-option>
+  <mat-option value="Friday">Friday</mat-option>
+
+  </mat-select>
+
+  </mat-form-field>
+</td>
+<td>  <mat-form-field  *ngIf=" recurrence == true && recurrenceFreq == 'Month'">
+    <mat-select placeholder="RecurringEvery" [(ngModel)]="recurrenceMonth" multiple>
+    <mat-option value="-1"> Last Day of the Month</mat-option>
+    <mat-option *ngFor="let item of DayList"value="item">{{item}}</mat-option>
+
+
+    </mat-select>
+
+  </mat-form-field>
+</td>
+<td>  <mat-form-field *ngIf=" recurrence == true && recurrenceFreq == 'Daily'">
+
+    <input matInput placeholder="Interval" min="1" [(ngModel)]="recurrenceDay" [formControl]="rateControl">
+    <mat-error>Range 1-100 (1 is everyday)</mat-error>
+
+  </mat-form-field>
+</td>
+
+
+
+
+</tr>
     <tr style="padding:30px">
 
         <td style="padding:10px;">
