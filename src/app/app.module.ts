@@ -38,6 +38,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { ProjectdboxComponent } from './projectdbox/projectdbox.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     DialogboxComponent,
     DashboardComponent,
     BuySellDialogComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ProjectdboxComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
   ],
   entryComponents: [
     DialogboxComponent,
-    BuySellDialogComponent
+    BuySellDialogComponent,
+    ProjectdboxComponent
 ],
 
   providers: [DialogformService],

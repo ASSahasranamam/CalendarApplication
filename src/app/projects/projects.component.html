@@ -240,18 +240,25 @@
           </td>
 
           <td>
+            <span>
+              <input  class="form-control"
+              type="text"
+    mwlFlatpickr
+    [(ngModel)]="task.startdate"
+    (ngModelChange)="refresh.next()"
+    [altInput]="true"
+    [convertModelValue]="true"
+    [enableTime]="true"
+    dateFormat="Y-MM-dTH:i"
+    altFormat="F j, Y H:i"
+    placeholder='Start Date'>
 
-          <input  class="form-control"
-            type="text"
-            mwlFlatpickr
-            [(ngModel)]="task.startdate"
-            (ngModelChange)="refresh.next()"
-            [altInput]="true"
-            [convertModelValue]="true"
-            [enableTime]="true"
-            dateFormat="Y-MM-dTH:i"
-            altFormat="F j, Y H:i"
-            placeholder='Start Date'>
+    <button style="margin: 10px " mat-icon-button (click)='openProjDialog()' >
+      <mat-icon>calendar_today</mat-icon>
+    </button>
+
+
+</span>
 
           </td>
           <!-- <td>
