@@ -4,7 +4,7 @@ import {DialogformService} from  '../dialogform.service'
 import {MatDialog} from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
-// 
+//
 // const ELEMENT_DATA = [
 //   {
 //     position: 0,
@@ -86,7 +86,6 @@ export class ProjectsComponent implements OnInit {
     "Predecessor",
     "Worker",
     "Start Date",
-    'Completion Status',
   "Actions"];
 
 
@@ -122,7 +121,6 @@ switchView(): void{
 }
 
 
-powers = ['Really Smart', 'Super Flexible', 'Weather Changer'];
 
 dropdownSearch =['aparna','adithya','benjamin']
 
@@ -197,7 +195,9 @@ openProjDialog() {
   const dialogRef = this.dialog.open(ProjectdboxComponent, {
 
   minWidth: '70%',
-  width: 'auto'
+  width: 'auto',
+  hasBackdrop: false
+
 
 });
 

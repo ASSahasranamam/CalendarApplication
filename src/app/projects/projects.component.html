@@ -175,7 +175,7 @@
         <td></td>
         <td>{{element.worker}}</td>
         <td>{{element.startdate}}</td>
-        <td>{{element.statusPercentage}}</td>
+        <!-- <td>{{element.statusPercentage}}</td> -->
         <td>
 
 
@@ -234,12 +234,12 @@
 
             </select>
           </td>
-          <td>
+          <td >
             <ng-select [multiple]='true' class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="task.worker" >
             </ng-select>
           </td>
 
-          <td style="display: inline-block;">
+          <td class="row">
 
                 <input  class="form-control"
                 type="text"
@@ -250,7 +250,7 @@
       [altInput]="true"
       [convertModelValue]="true"
       [enableTime]="true"
-      dateFormat="Y-MM-dTH:i"
+      dateFormat="d-m-yyTH:i"
       altFormat="F j, Y H:i"
       placeholder='Start Date'>
 
@@ -278,13 +278,13 @@
               placeholder='Click to enter Start Date'>
             </td> -->
 
-          <td>
-            <mat-form-field style="max-height:5px; max-width:130px" class="example-full-width">
+          <!-- <td>
+            <mat-form-field style="max-height:5px; max-width:130px" class="example-full-width"> -->
               <!-- <input matInput [(ngModel)]='task.statusPercentage' placeholder="Click to Enter" autofilled cdkTextareaAutosize> -->
               <!-- <p matSuffix> % </p> -->
-              <input matInput [(ngModel)]='task.statusText' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
-            </mat-form-field>
-          </td>
+              <!-- <input matInput [(ngModel)]='task.statusText' placeholder="Click to Enter" autofilled cdkTextareaAutosize>
+            </mat-form-field> -->
+          <!-- </td> -->
           <td>
               <button style="margin: 10px " mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
