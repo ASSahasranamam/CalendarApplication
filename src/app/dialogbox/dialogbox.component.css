@@ -1,11 +1,7 @@
 mat-dialog-content{
 
-  min-height: 50vh;
+  /* min-height: 50vh; */
 }
 .example-full-width {
   width: 100%;
-}
-
-table{
-  max-width: 90%;
 }

@@ -123,23 +123,14 @@ export class CalendarComponent implements OnInit {
 //  this.refresh.next();
 }
 
-openDiaxlog(evDate: Date): void{
-
-}
-
 openDialog() {
-  const dialogRef = this.dialog.open(DialogboxComponent, {
-
-  minWidth: '50%',
-  width: '837px'
-
-});
-  this.dservice.setDate(this.clickedDate)
-console.log(this.clickedDate)
+  let dialogRef = this.dialog.open(DialogboxComponent, {});
+//  this.dservice.setDate(this.clickedDate)
+// console.log(this.clickedDate)
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${result}`);
-    this.refresh.next()
-    this.displaySelected()
+      this.refresh.next()
+      this.displaySelected()
   });
 }
 
@@ -151,19 +142,18 @@ openBsDialog(option: string) {
   console.log(option);
 
 
-  const dialogRef = this.dialog.open(BuySellDialogComponent, {
+  let dialogRef2 = this.dialog.open(BuySellDialogComponent, {
 
   minWidth: '70%',
   width: 'auto'
 
 });
-  dialogRef.afterClosed().subscribe(result => {
+  dialogRef2.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${result}`);
     this.refresh.next()
     this.displaySelected()
   });
 }
-
 
 
 dashCalSwitch(): void {

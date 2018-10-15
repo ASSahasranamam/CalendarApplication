@@ -17,3 +17,113 @@
 nav {
   box-shadow: -2px 1px 20px 0px;
 }
+
+
+.total{
+  /* min-height: 100vh; */
+  width: 100%;
+  margin-top: 10px;
+  padding: 0px
+}
+
+.col-2{
+  min-height: 80vh;
+}
+/* .col-2{
+  min-height: 100vh;
+  max-height: 100vh;
+} */
+.sideL {
+  background-color: #4f4f4f;
+  color: white;
+  padding-top: 10px;
+
+}
+.sideR{
+margin: 0px ;
+
+}
+.row {
+  margin: 0 0 0 0;
+}
+.calendar{
+  border: 2px solid blue;
+  min-height: 75vh;
+  margin:  auto;
+
+  width: 100%;
+}
+
+.btnz {
+  width: 100%;
+  margin: 1px;
+  padding: 5px;
+  color: white;
+  text-align: left;
+}
+.btn2{
+  background-color: #4f4f4f;
+  color: white;
+  width: 100%;
+  padding: 0px;
+  box-shadow: none !important;
+
+
+}
+.btn2:hover {
+  background-color: #4f4f4f;
+}
+mat-expansion-panel-header{
+  padding: 5px;
+}
+mat-expansion-panel-header{
+  padding: 5px;
+}
+
+h3 {
+  margin: 0 0 10px;
+}
+
+pre {
+  background-color: #f5f5f5;
+  padding: 15px;
+}
+
+.viewer{
+  padding: 20px;
+}
+
+.eventShowcase{
+  overflow-y: scroll;
+  padding-top: 10px;
+  max-height: 95vh;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.dotRed {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dotBlue {
+    height: 10px;
+    width: 10px;
+    background-color: blue;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dotGreen {
+
+
+}
+
+.form-group{
+  margin-bottom: 0px;
+}

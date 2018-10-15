@@ -42,4 +42,104 @@ notifications</i>
 </nav>
 
 
-<router-outlet></router-outlet>
+
+<div class="col-12 row total">
+  <div class = " sideL col-2 "  >
+
+    <!-- <h3 style="text-align:center"> Tasks</h3>
+    <mat-divider ></mat-divider> -->
+
+        <button mat-button *ngIf="showDashboard == false"  (click)="dashCalSwitch()" class="btnz">Dashboard</button>
+
+        <button mat-button *ngIf="showDashboard" (click)="dashCalSwitch()" class="btnz">Calendar</button>
+
+        <mat-divider></mat-divider>
+
+
+        <button mat-button (click)='openDialog()' class="btnz ">Add Event</button>
+        <mat-divider></mat-divider>
+
+
+
+                <mat-expansion-panel class="btn2">
+             <mat-expansion-panel-header>
+               <mat-panel-title style="
+               color:white; text-align:left;   margin-left: 0px">
+                 Add Events 2.0
+               </mat-panel-title>
+             </mat-expansion-panel-header>
+             <mat-divider></mat-divider>
+             <button mat-button (click)='openDialog()' class="btnz ">Task</button>
+             <mat-divider></mat-divider>
+
+             <button mat-button (click)='openBsDialog("Buy")' class="btnz "> Change Request </button>
+             <mat-divider></mat-divider>
+
+             <button mat-button (click)='openBsDialog("Buy")' class="btnz ">Issue</button>
+             <mat-divider></mat-divider>
+
+             <button mat-button (click)='openBsDialog("Buy")' class="btnz ">Buy</button>
+             <mat-divider></mat-divider>
+
+             <button mat-button (click)='openBsDialog("Sell")' class="btnz ">Sell</button>
+             <mat-divider></mat-divider>
+
+
+            </mat-expansion-panel>
+
+            <mat-divider></mat-divider>
+
+
+
+
+        <!-- <button mat-button  class="btnz ">ProjCreator</button>
+        <mat-divider></mat-divider> -->
+
+
+        <button mat-button  (click)=' displayProject()' class="btnz">Projects </button>
+        <mat-divider></mat-divider>
+
+
+        <button mat-button  class="btnz">Tasks</button>
+        <mat-divider></mat-divider>
+
+        <button mat-button  class="btnz">Contacts</button>
+        <mat-divider></mat-divider>
+
+        <mat-expansion-panel class="btn2">
+     <mat-expansion-panel-header>
+       <mat-panel-title style="color:white; text-align:left;   margin-left: 0px
+">
+         My Profile
+       </mat-panel-title>
+     </mat-expansion-panel-header>
+     <mat-divider></mat-divider>
+     <button mat-button  class="btnz btn2">prim</button>
+     <mat-divider></mat-divider>
+
+     <button mat-button  class="btnz btn2">prim</button>
+     <mat-divider></mat-divider>
+
+
+
+     <button mat-button  class="btnz btn2">Primary</button>
+     <mat-divider></mat-divider>
+
+
+    </mat-expansion-panel>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button  class="btnz">Settings</button>
+    <mat-divider></mat-divider>
+
+
+
+   </div>
+
+<div class="col-10 total">
+  <router-outlet class="row "></router-outlet>
+
+</div>
+
+</div>
