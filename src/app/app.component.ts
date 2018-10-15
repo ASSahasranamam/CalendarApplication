@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router, NavigationEnd } from '@angular/router';
+
 import {DialogformService} from './dialogform.service'
 import {MatDialog} from '@angular/material';
 import {
@@ -7,6 +9,7 @@ import {
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
 import { Subject } from 'rxjs/Subject';
+import { filter } from 'rxjs/operators';
 
 import {DialogboxComponent} from './dialogbox/dialogbox.component'
 import {BuySellDialogComponent} from './buy-sell-dialog/buy-sell-dialog.component'
@@ -21,17 +24,42 @@ export class AppComponent implements OnInit {
   title = 'docker-test';
   results = '';
   refresh: Subject<any> = new Subject();
+  showDashboard: boolean  = false;
+  showProjects: boolean = false
+  isLogin: boolean;
+
+
 
   username:string =''
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient, private router: Router,
     public dialog: MatDialog, private dservice: DialogformService){
+
+
+
   }
+
+
   ngOnInit(): void {
     this.http.get('http://localhost:5002/').subscribe(data => {
       console.log(data);
     });
 
     this.username = this.dservice.getUserName();
+
+    this.router.events.pipe(
+  filter(event =>
+     event instanceof NavigationEnd)).subscribe(
+       (event: NavigationEnd) => {
+  console.log(event.url);
+  if(event.url === '/login'){
+    this.isLogin = true;
+
+  } else{
+    this.isLogin = false;
+  }
+  console.log(this.isLogin);
+  });
+
   }
 
 
@@ -67,6 +95,22 @@ export class AppComponent implements OnInit {
     });
   }
 
+  dashCalSwitch(): void {
+    if(this.showDashboard== true){
+      this.showDashboard= false
+      this.showProjects = false
+    } else{
+      this.showDashboard = true
+      this.showProjects = false
+    }
+  }
 
+
+  displayProject(): void{
+    console.log("helo");
+    this.showDashboard = false;
+    this.showProjects =  true;
+    console.log(this.showProjects)
+  }
 
 }

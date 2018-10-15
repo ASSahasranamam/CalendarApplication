@@ -43,7 +43,7 @@ notifications</i>
 
 
 
-<div class="col-12 row total">
+<div *ngIf="this.isLogin== false" class="col-12 row total">
   <div class = " sideL col-2 "  >
 
     <!-- <h3 style="text-align:center"> Tasks</h3>
@@ -141,5 +141,15 @@ notifications</i>
   <router-outlet class="row "></router-outlet>
 
 </div>
+
+
+
+
+
+</div>
+
+
+<div class="col-12 total" *ngIf="this.isLogin ">
+  <router-outlet class="row "></router-outlet>
 
 </div>
