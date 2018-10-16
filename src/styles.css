@@ -13,3 +13,5 @@ body {
   max-height : 100vh;
   overflow: auto;
 }
+.md-dialog-container {
+   height: 100vh !important; top: 0 !important; position:  !important; }

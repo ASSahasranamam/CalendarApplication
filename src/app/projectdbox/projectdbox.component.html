@@ -4,145 +4,147 @@
 
 
 <mat-dialog-content class="mat-typography">
-</mat-dialog-content>
 
-<mat-divider></mat-divider>
+  <mat-divider></mat-divider>
 
-<table>
+  <table>
 
-<tr>
+  <tr>
 
-<td>
-  <mat-checkbox style="margin-left:10px; padding:5px" [(ngModel)]="recurrence">Recuring Event </mat-checkbox>
+  <td>
+    <mat-checkbox style="margin-left:10px; padding:5px" [(ngModel)]="recurrence">Recuring Event </mat-checkbox>
 
-</td>
+  </td>
 
-<td>
-  <mat-form-field *ngIf="recurrence == true" style="padding:5px">
-  <mat-select placeholder="RecurringEvery"  [(ngModel)]="recurrenceFreq">
-  <mat-option value="Month">Monthly</mat-option>
-  <mat-option value="Week">Weekly</mat-option>
-  <mat-option value="Daily">Everyday</mat-option>
-  </mat-select>
+  <td>
+    <mat-form-field *ngIf="recurrence == true" style="padding:5px">
+    <mat-select placeholder="RecurringEvery"  [(ngModel)]="recurrenceFreq">
+    <mat-option value="Month">Monthly</mat-option>
+    <mat-option value="Week">Weekly</mat-option>
+    <mat-option value="Daily">Everyday</mat-option>
+    </mat-select>
 
-  </mat-form-field>
+    </mat-form-field>
 
-</td>
+  </td>
 
 
-<td>
-  <mat-form-field *ngIf=" recurrence == true && recurrenceFreq == 'Week'"  style="padding:5px">
-  <mat-select placeholder="RecurringEvery" [(ngModel)]="recurrenceWeek" multiple>
-  <mat-option value="Monday">Monday</mat-option>
-  <mat-option value="Tuesday">Tuesday</mat-option>
-  <mat-option value="Wednesday">Wednesday</mat-option>
-  <mat-option value="Thursday">Thursday</mat-option>
-  <mat-option value="Friday">Friday</mat-option>
-
-  </mat-select>
-
-  </mat-form-field>
-</td>
-<td>  <mat-form-field  *ngIf=" recurrence == true && recurrenceFreq == 'Month'">
-    <mat-select placeholder="RecurringEvery" [(ngModel)]="recurrenceMonth" multiple>
-    <mat-option value="-1"> Last Day of the Month</mat-option>
-    <mat-option *ngFor="let item of DayList"value="item">{{item}}</mat-option>
-
+  <td>
+    <mat-form-field *ngIf=" recurrence == true && recurrenceFreq == 'Week'"  style="padding:5px">
+    <mat-select placeholder="RecurringEvery" [(ngModel)]="recurrenceWeek" multiple>
+    <mat-option value="Monday">Monday</mat-option>
+    <mat-option value="Tuesday">Tuesday</mat-option>
+    <mat-option value="Wednesday">Wednesday</mat-option>
+    <mat-option value="Thursday">Thursday</mat-option>
+    <mat-option value="Friday">Friday</mat-option>
 
     </mat-select>
 
-  </mat-form-field>
-</td>
-<td>  <mat-form-field *ngIf=" recurrence == true && recurrenceFreq == 'Daily'">
-
-    <input matInput placeholder="Interval" min="1" [(ngModel)]="recurrenceDay" [formControl]="rateControl">
-    <mat-error>Range 1-100 (1 is everyday)</mat-error>
-
-  </mat-form-field>
-</td>
+    </mat-form-field>
+  </td>
+  <td>  <mat-form-field  *ngIf=" recurrence == true && recurrenceFreq == 'Month'">
+      <mat-select placeholder="RecurringEvery" [(ngModel)]="recurrenceMonth" multiple>
+      <mat-option value="-1"> Last Day of the Month</mat-option>
+      <mat-option *ngFor="let item of DayList"value="item">{{item}}</mat-option>
 
 
+      </mat-select>
 
+    </mat-form-field>
+  </td>
+  <td>  <mat-form-field *ngIf=" recurrence == true && recurrenceFreq == 'Daily'">
 
-</tr>
-    <tr style="padding:30px">
+      <input matInput placeholder="Interval" min="1" [(ngModel)]="recurrenceDay" [formControl]="rateControl">
+      <mat-error>Range 1-100 (1 is everyday)</mat-error>
 
-        <td style="padding:10px;">
-          <mat-checkbox style="margin-left:10px; float: left; padding:5px" [(ngModel)]="reminderNeeded">Set Reminder</mat-checkbox>
-        </td>
-
-        <td *ngIf="reminderNeeded" style= "padding:10px">
-          <mat-form-field >
-            <input matInput  type='text' placeholder="Reminder Quote" [(ngModel)]="reminderQuote" >
-          </mat-form-field>
-
-      </td>
-
-
-        <td *ngIf="reminderNeeded" style= "padding:10px">
-
-            <mat-checkbox style="float: left; padding:5px" [(ngModel)]="reminderFreqNeeded">Set Frequent Reminder </mat-checkbox>
-        </td>
-
-
-      </tr>
-
-       <tr style=" padding:30px" *ngIf="reminderNeeded">
-
-        <td  style="margin:10px;">
-          <div class="form-group">
-            <label for="enddate">Click to set reminder Date</label>
-            <input
-              class="form-control"
-              id="enddate"
-              type="text"
-              mwlFlatpickr
-              [(ngModel)]="end"
-              (ngModelChange)="refresh.next()"
-              [altInput]="true"
-              [convertModelValue]="true"
-              [enableTime]="true"
-              dateFormat="Y-m-dTH:i"
-              altFormat="F j, Y H:i"
-              placeholder='Click to enter End Date'>
-          </div>
-
-        </td>
+    </mat-form-field>
+  </td>
 
 
 
 
-        <td style= "margin:20px">
-          <button  mat-stroked-button style=" margin:10px; padding:5px;"> Attach Reminder ringtone<mat-icon>add</mat-icon></button>
-        </td>
+  </tr>
+      <tr style="padding:30px">
 
-        <td  style="margin:10px;">
+          <td style="padding:10px;">
+            <mat-checkbox style="margin-left:10px; float: left; padding:5px" [(ngModel)]="reminderNeeded">Set Reminder</mat-checkbox>
+          </td>
 
-
-            <mat-form-field style="padding : 20px;"  *ngIf="reminderFreqNeeded "  >
-              <span>
-              <input style ="max-width:100px" matInput [(ngModel)]='reminderFreq' type='number' placeholder="time" >
-
-              <mat-select [(value)]="selected" style ="max-width:100px"  [(ngModel)]="reminderFreqDuration" >
-                <mat-option>None</mat-option>
-                 <mat-option value="Minutes">Minutes</mat-option>
-                <mat-option value="Hours">Hours</mat-option>
-                <mat-option value="Days">Days</mat-option>
-               </mat-select>
-             </span>
-
+          <td *ngIf="reminderNeeded" style= "padding:10px">
+            <mat-form-field >
+              <input matInput  type='text' placeholder="Reminder Quote" [(ngModel)]="reminderQuote" >
             </mat-form-field>
 
-
         </td>
 
 
-      </tr>
+          <td *ngIf="reminderNeeded" style= "padding:10px">
 
-</table>
+              <mat-checkbox style="float: left; padding:5px" [(ngModel)]="reminderFreqNeeded">Set Frequent Reminder </mat-checkbox>
+          </td>
 
-<mat-divider>
-</mat-divider>
+
+        </tr>
+
+         <tr style=" padding:30px" *ngIf="reminderNeeded">
+
+          <td  style="margin:10px;">
+            <div class="form-group">
+              <label for="enddate">Click to set reminder Date</label>
+              <input
+                class="form-control"
+                id="enddate"
+                type="text"
+                mwlFlatpickr
+                [(ngModel)]="end"
+                (ngModelChange)="refresh.next()"
+                [altInput]="true"
+                [convertModelValue]="true"
+                [enableTime]="true"
+                dateFormat="Y-m-dTH:i"
+                altFormat="F j, Y H:i"
+                placeholder='Click to enter End Date'>
+            </div>
+
+          </td>
+
+
+
+
+          <td style= "margin:20px">
+            <button  mat-stroked-button style=" margin:10px; padding:5px;"> Attach Reminder ringtone<mat-icon>add</mat-icon></button>
+          </td>
+
+          <td  style="margin:10px;">
+
+
+              <mat-form-field style="padding : 20px;"  *ngIf="reminderFreqNeeded "  >
+                <span>
+                <input style ="max-width:100px" matInput [(ngModel)]='reminderFreq' type='number' placeholder="time" >
+
+                <mat-select [(value)]="selected" style ="max-width:100px"  [(ngModel)]="reminderFreqDuration" >
+                  <mat-option>None</mat-option>
+                   <mat-option value="Minutes">Minutes</mat-option>
+                  <mat-option value="Hours">Hours</mat-option>
+                  <mat-option value="Days">Days</mat-option>
+                 </mat-select>
+               </span>
+
+              </mat-form-field>
+
+
+          </td>
+
+
+        </tr>
+
+  </table>
+
+  <mat-divider>
+  </mat-divider>
+
+
+</mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-raised-button color='warn' mat-dialog-close>Cancel</button>

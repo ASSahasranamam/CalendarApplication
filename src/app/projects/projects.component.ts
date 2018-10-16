@@ -86,6 +86,7 @@ export class ProjectsComponent implements OnInit {
     "Predecessor",
     "Worker",
     "Start Date",
+    ' ',
   "Actions"];
 
 
@@ -102,6 +103,8 @@ rangeValue: { from: Date; to: Date } = {
   constructor(public dialog: MatDialog, private dservice: DialogformService ) { }
 
   ngOnInit() {
+
+    this.addPhase();
 
 //     this.dataSource.sort = this.sort;
 // this.dataSource.paginator = this.paginator;
@@ -195,9 +198,7 @@ openProjDialog() {
   const dialogRef = this.dialog.open(ProjectdboxComponent, {
 
   minWidth: '70%',
-  width: 'auto',
-  hasBackdrop: false
-
+  width: 'auto'
 
 });
 
@@ -209,7 +210,10 @@ openProjDialog() {
 }
 
 
+CreateProject(): void {
 
+  this.dservice.createProject(this.localData);
+}
 
 
 }

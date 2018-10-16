@@ -175,6 +175,7 @@
         <td></td>
         <td>{{element.worker}}</td>
         <td>{{element.startdate}}</td>
+        <td>  </td>
         <!-- <td>{{element.statusPercentage}}</td> -->
         <td>
 
@@ -183,9 +184,15 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #phasemenu="matMenu">
-            <button mat-menu-item (click)="toggle(element)">Toggle</button>
+            <button mat-menu-item (click)="toggle(element)">
+              <mat-icon>add</mat-icon>
+              <span>Toggle</span>
+            </button>
 
-            <button  mat-menu-item (click)="addTask(i)">AddTask</button>
+            <button  mat-menu-item (click)="addTask(i)">
+              <mat-icon>add</mat-icon>
+              <span>Add Task</span>
+            </button>
 
             <button  mat-menu-item>
               <mat-icon>clear</mat-icon>
@@ -229,13 +236,13 @@
 
           </td>
           <td>
-            <select style=" max-width:100px" class="custom-select mr-sm-2" required [(ngModel)]="task.predecessor" >
+            <select style=" max-width:100px; margin-top:10px;" class="custom-select mr-sm-2" required [(ngModel)]="task.predecessor" >
                         <option *ngFor="let x of element.taskData;let z= index" value="z">{{i+1}}.{{z+1}}</option>
 
             </select>
           </td>
           <td >
-            <ng-select [multiple]='true' class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="task.worker" >
+            <ng-select placeholder='Select Workers' [multiple]='true' class="custom" id="inlineFormCustomSelect" required [items]=dropdownSearch [(ngModel)]="task.worker" >
             </ng-select>
           </td>
 
@@ -243,7 +250,7 @@
 
                 <input  class="form-control"
                 type="text"
-                style="max-width:100px;"
+                style="max-width:100px ; margin-top:20px;"
       mwlFlatpickr
       [(ngModel)]="task.startdate"
       (ngModelChange)="refresh.next()"
@@ -254,14 +261,15 @@
       altFormat="F j, Y H:i"
       placeholder='Start Date'>
 
-      <button style="margin: 10px " mat-icon-button (click)='openProjDialog()' >
-        <mat-icon>calendar_today</mat-icon>
-      </button>
-
-
-
+          </td>
+          <td>
+            <button style="margin: 14px " mat-icon-button (click)='openProjDialog()' >
+              <mat-icon>calendar_today</mat-icon>
+            </button>
 
           </td>
+
+
           <!-- <td>
 
             <input
@@ -316,10 +324,11 @@
 
     </tbody>
   </table>
+<br>
   <mat-divider></mat-divider>
-
+<br>
 <div class=" align: center;float: middle;">
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" (click)=" CreateProject()" class="btn btn-success">Submit</button>
   <button style='margin-left:10px;' class="btn btn-danger">Reset</button>
   <button style='margin-left:10px;' class="btn btn-warning">Cancel</button>
 
