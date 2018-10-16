@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
 
 
 
-  }
+}
 
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
      event instanceof NavigationEnd)).subscribe(
        (event: NavigationEnd) => {
   console.log(event.url);
-  if(event.url === '/login'){
+  if(event.url === '/login' || event.url=='/' ){
     this.isLogin = true;
 
   } else{
@@ -108,9 +108,12 @@ export class AppComponent implements OnInit {
 
   displayProject(): void{
     console.log("helo");
-    this.showDashboard = false;
-    this.showProjects =  true;
-    console.log(this.showProjects)
+
+    this.router.navigateByUrl('/project');
+
+    //this.showDashboard = false;
+    //this.showProjects =  true;
+    //console.log(this.showProjects)
   }
 
 }

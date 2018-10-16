@@ -1,146 +1,146 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav *ngIf="this.isLogin == false" class="navbar navbar-expand-sm  bg-faded" style="padding:5px">
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
-  <i class="fas fa-align-justify"></i>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-align-justify"></i>
 
 
-</button>
+  </button>
 
-<!-- Brand -->
-<a class="navbar-brand" style="padding:0px" href="#">
-<img src="/src/app/de.png" alt="Logo" style="max-height:40px; padding:0px; margin:0px 10px;">
-</a>
+  <!-- Brand -->
+  <a class="navbar-brand" style="padding:0px" href="#">
+    <img src="/src/app/de.png" alt="Logo" style="max-height:40px; padding:0px; margin:0px 10px;">
+  </a>
 
-<!-- Links -->
-<div class="collapse navbar-collapse" id="nav-content">
-<ul class="navbar-nav">
-<li class="nav-item">
-<button class="btn btn-link" name="button"> Link0</button>
-</li>
-<li class="nav-item">
-  <button class="btn btn-link" name="button"> Link1</button>
-</li>
-<li class="nav-item">
-  <button class="btn btn-link" name="button"> Link2</button>
-</li>
-</ul>
-</div>
+  <!-- Links -->
+  <div class="collapse navbar-collapse" id="nav-content">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <button class="btn btn-link" name="button"> Link0</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-link" name="button"> Link1</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-link" name="button"> Link2</button>
+      </li>
+    </ul>
+  </div>
 
-<ul class='navbar-nav mr-auto'>
-  <li class="nav-item">
-    Welcome, {{this.username}}
-  </li>
-  <li class="nav-item">
-    <i class="material-icons">
-notifications</i>
-  </li>
-  <li class="nav-item" style="margin:0px 40px">
-    <button mat-raised-button color='warn' name="button"> Logout</button>
-  </li>
-</ul>
+  <ul class='navbar-nav mr-auto'>
+    <li class="nav-item">
+      Welcome, {{this.username}}
+    </li>
+    <li class="nav-item">
+      <i class="material-icons">
+        notifications</i>
+    </li>
+    <li class="nav-item" style="margin:0px 40px">
+      <button mat-raised-button color='warn' name="button"> Logout</button>
+    </li>
+  </ul>
 
 </nav>
 
 
 
 <div *ngIf="this.isLogin== false" class="col-12 row total">
-  <div class = " sideL col-2 "  >
+  <div class=" sideL col-2 ">
 
     <!-- <h3 style="text-align:center"> Tasks</h3>
     <mat-divider ></mat-divider> -->
 
-        <button mat-button *ngIf="showDashboard == false"  (click)="dashCalSwitch()" class="btnz">Dashboard</button>
+    <button mat-button *ngIf="showDashboard == false" (click)="dashCalSwitch()" class="btnz">Dashboard</button>
 
-        <button mat-button *ngIf="showDashboard" (click)="dashCalSwitch()" class="btnz">Calendar</button>
+    <button mat-button *ngIf="showDashboard" (click)="dashCalSwitch()" class="btnz">Calendar</button>
 
-        <mat-divider></mat-divider>
-
-
-        <button mat-button (click)='openDialog()' class="btnz ">Add Event</button>
-        <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
 
+    <button mat-button (click)='openDialog()' class="btnz ">Add Event</button>
+    <mat-divider></mat-divider>
 
-                <mat-expansion-panel class="btn2">
-             <mat-expansion-panel-header>
-               <mat-panel-title style="
+
+
+    <mat-expansion-panel class="btn2">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="
                color:white; text-align:left;   margin-left: 0px">
-                 Add Events 2.0
-               </mat-panel-title>
-             </mat-expansion-panel-header>
-             <mat-divider></mat-divider>
-             <button mat-button (click)='openDialog()' class="btnz ">Task</button>
-             <mat-divider></mat-divider>
+          Add Events 2.0
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+      <button mat-button (click)='openDialog()' class="btnz ">Task</button>
+      <mat-divider></mat-divider>
 
-             <button mat-button (click)='openBsDialog("Buy")' class="btnz "> Change Request </button>
-             <mat-divider></mat-divider>
+      <button mat-button (click)='openBsDialog("Buy")' class="btnz "> Change Request </button>
+      <mat-divider></mat-divider>
 
-             <button mat-button (click)='openBsDialog("Buy")' class="btnz ">Issue</button>
-             <mat-divider></mat-divider>
+      <button mat-button (click)='openBsDialog("Buy")' class="btnz ">Issue</button>
+      <mat-divider></mat-divider>
 
-             <button mat-button (click)='openBsDialog("Buy")' class="btnz ">Buy</button>
-             <mat-divider></mat-divider>
+      <button mat-button (click)='openBsDialog("Buy")' class="btnz ">Buy</button>
+      <mat-divider></mat-divider>
 
-             <button mat-button (click)='openBsDialog("Sell")' class="btnz ">Sell</button>
-             <mat-divider></mat-divider>
-
-
-            </mat-expansion-panel>
-
-            <mat-divider></mat-divider>
-
-
-
-
-        <!-- <button mat-button  class="btnz ">ProjCreator</button>
-        <mat-divider></mat-divider> -->
-
-
-        <button mat-button  (click)=' displayProject()' class="btnz">Projects </button>
-        <mat-divider></mat-divider>
-
-
-        <button mat-button  class="btnz">Tasks</button>
-        <mat-divider></mat-divider>
-
-        <button mat-button  class="btnz">Contacts</button>
-        <mat-divider></mat-divider>
-
-        <mat-expansion-panel class="btn2">
-     <mat-expansion-panel-header>
-       <mat-panel-title style="color:white; text-align:left;   margin-left: 0px
-">
-         My Profile
-       </mat-panel-title>
-     </mat-expansion-panel-header>
-     <mat-divider></mat-divider>
-     <button mat-button  class="btnz btn2">prim</button>
-     <mat-divider></mat-divider>
-
-     <button mat-button  class="btnz btn2">prim</button>
-     <mat-divider></mat-divider>
-
-
-
-     <button mat-button  class="btnz btn2">Primary</button>
-     <mat-divider></mat-divider>
+      <button mat-button (click)='openBsDialog("Sell")' class="btnz ">Sell</button>
+      <mat-divider></mat-divider>
 
 
     </mat-expansion-panel>
 
     <mat-divider></mat-divider>
 
-    <button mat-button  class="btnz">Settings</button>
+
+
+
+    <!-- <button mat-button  class="btnz ">ProjCreator</button>
+        <mat-divider></mat-divider> -->
+
+
+    <button mat-button (click)=' displayProject()' class="btnz">Projects </button>
+    <mat-divider></mat-divider>
+
+
+    <button mat-button class="btnz">Tasks</button>
+    <mat-divider></mat-divider>
+
+    <button mat-button class="btnz">Contacts</button>
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel class="btn2">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="color:white; text-align:left;   margin-left: 0px
+">
+          My Profile
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+      <button mat-button class="btnz btn2">prim</button>
+      <mat-divider></mat-divider>
+
+      <button mat-button class="btnz btn2">prim</button>
+      <mat-divider></mat-divider>
+
+
+
+      <button mat-button class="btnz btn2">Primary</button>
+      <mat-divider></mat-divider>
+
+
+    </mat-expansion-panel>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="btnz">Settings</button>
     <mat-divider></mat-divider>
 
 
 
-   </div>
+  </div>
 
-<div class="col-10 total">
-  <router-outlet class="row "></router-outlet>
+  <div class="col-10 total">
+    <router-outlet class="row "></router-outlet>
 
-</div>
+  </div>
 
 
 
