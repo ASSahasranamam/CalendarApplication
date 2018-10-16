@@ -40,6 +40,9 @@ sample: CalendarEvent= {
   }
 } ;
 
+
+
+
 bs: string ='buy'
 private editInfo = new BehaviorSubject<CalendarEvent>( this.sample);
 private editHolder= this.editInfo.asObservable();
@@ -128,8 +131,12 @@ getBs(): string{
     return this.bs;
 }
 
-setProject(projDetails: any): void{
-  console.log(projDetails);
+
+createProject(res: any): void{
+  console.log(res);
 }
+
+
+
 
 }

@@ -4,7 +4,65 @@ import {DialogformService} from  '../dialogform.service'
 import {MatDialog} from '@angular/material';
 
 import { Subject } from 'rxjs/Subject';
-
+//
+// const ELEMENT_DATA = [
+//   {
+//     position: 0,
+//     name: "aS",
+//     duration: 1,
+//     durationType:'Hours',
+//     predecessor: [0],
+//     worker: 'adithya',
+//     startdate: '11/12/2012',
+//     endDate: '12/12/2012',
+//     statusPercentage: 56,
+//     statusText: 'half',
+//     show: true
+//
+//   },
+//   {
+//     position: 1,
+//     name: "aS",
+//     duration: 12,
+//     durationType:'Hours',
+//     predecessor: [0],
+//     worker: 'adithya',
+//     startdate: '12/12/2012',
+//     endDate: '13/12/2012',
+//     statusPercentage: 0,
+//     statusText: 'half',
+//              show: true
+//
+//   },
+//   {
+//     position: 2,
+//     name: "aSdaf",
+//     duration: 1,
+//     durationType:'Hours',
+//     predecessor: [1],
+//     worker: 'adithya',
+//     startdate: '12/12/2012',
+//     endDate: '14/12/2012',
+//     statusPercentage: 56,
+//     statusText: 'half',
+//     show: true
+//
+//   },
+//   {
+//     position: 3,
+//     name: "asafgS",
+//     duration: 4,
+//     durationType:'days',
+//     predecessor: [3],
+//     worker: 'adithya',
+//     startdate: '14/12/2012',
+//     endDate: '20/12/2012',
+//     statusPercentage: 56,
+//     statusText: 'half',
+//     show: false
+//
+//   }
+// ]
 
 
 @Component({
@@ -28,7 +86,7 @@ export class ProjectsComponent implements OnInit {
     "Predecessor",
     "Worker",
     "Start Date",
-    '',
+    ' ',
   "Actions"];
 
 
@@ -47,6 +105,7 @@ rangeValue: { from: Date; to: Date } = {
   ngOnInit() {
 
     this.addPhase();
+
 //     this.dataSource.sort = this.sort;
 // this.dataSource.paginator = this.paginator;
 
@@ -69,7 +128,7 @@ switchView(): void{
 dropdownSearch =['aparna','adithya','benjamin']
 
 model = {name: '', worker:[], description: '',
-type: 'regular',risk:'Medium', observer:[], startDate: '', localData: this.localData};
+type: 'regular',risk:'Medium', observer:[], startDate: ''};
 
 
 addPhase(){
@@ -139,9 +198,7 @@ openProjDialog() {
   const dialogRef = this.dialog.open(ProjectdboxComponent, {
 
   minWidth: '70%',
-  width: 'auto',
-  hasBackdrop: false
-
+  width: 'auto'
 
 });
 
@@ -153,10 +210,9 @@ openProjDialog() {
 }
 
 
-sendProjectDetails(): void {
+CreateProject(): void {
 
-    this.dservice.setProject(this.model);
-
+  this.dservice.createProject(this.localData);
 }
 
 
