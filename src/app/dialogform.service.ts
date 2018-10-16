@@ -128,4 +128,8 @@ getBs(): string{
     return this.bs;
 }
 
+setProject(projDetails: any): void{
+  console.log(projDetails);
+}
+
 }

@@ -6,13 +6,6 @@
   padding: 0px
 }
 
-.col-2{
-  /* min-height: 80vh; */
-}
-/* .col-2{
-  min-height: 100vh;
-  max-height: 100vh;
-} */
 .sideL {
   background-color: #4f4f4f;
   color: white;
@@ -23,6 +16,7 @@
 margin: 0px ;
 
 }
+
 .row {
   margin: 0 0 0 0;
 }
@@ -95,10 +89,10 @@ pre {
     display: inline-block;
 }
 
-.dotGreen {
+/* .dotGreen {
 
 
-}
+} */
 
 .form-group{
   margin-bottom: 0px;

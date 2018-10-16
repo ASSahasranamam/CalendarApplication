@@ -175,6 +175,7 @@
         <td></td>
         <td>{{element.worker}}</td>
         <td>{{element.startdate}}</td>
+        <td></td>
         <!-- <td>{{element.statusPercentage}}</td> -->
         <td>
 
@@ -253,7 +254,8 @@
       dateFormat="d-m-yyTH:i"
       altFormat="F j, Y H:i"
       placeholder='Start Date'>
-
+    </td>
+    <td>
       <button style="margin: 10px " mat-icon-button (click)='openProjDialog()' >
         <mat-icon>calendar_today</mat-icon>
       </button>
@@ -316,10 +318,11 @@
 
     </tbody>
   </table>
+  <br>
   <mat-divider></mat-divider>
-
+<br>
 <div class=" align: center;float: middle;">
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" (click)='sendProjectDetails()'  class="btn btn-success">Submit</button>
   <button style='margin-left:10px;' class="btn btn-danger">Reset</button>
   <button style='margin-left:10px;' class="btn btn-warning">Cancel</button>
 
